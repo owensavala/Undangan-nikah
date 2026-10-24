@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { 
   Heart, Calendar, Image as ImageIcon, Gift, Users, Music, 
   Save, RotateCcw, Download, Eye, Check, Layers, Palette, Lock, LogOut,
-  Sliders, Sun, Send, Copy, ExternalLink, MessageCircle
+  Sliders, Sun, Send, Copy, ExternalLink, MessageCircle, Plus, Trash2
 } from 'lucide-react';
 import PhotoPickerModal from './PhotoPickerModal';
 import { THEME_PRESETS } from '../data/themes';
@@ -14,6 +14,12 @@ export default function AdminDashboard({ data, onSave, onReset, onClosePreview, 
   const [guestNameInput, setGuestNameInput] = useState('');
   const [copiedLink, setCopiedLink] = useState(false);
   const [copiedMsg, setCopiedMsg] = useState(false);
+  const [useCustomDomain, setUseCustomDomain] = useState(true);
+
+  // Sync formData when data prop changes
+  useEffect(() => {
+    setFormData(JSON.parse(JSON.stringify(data)));
+  }, [data]);
   
   // State for Photo Picker Modal
   const [pickerConfig, setPickerConfig] = useState({
@@ -154,7 +160,9 @@ export default function AdminDashboard({ data, onSave, onReset, onClosePreview, 
         {/* TAB: GENERATOR LINK TAMU & WHATSAPP */}
         {/* ============================================================== */}
         {activeTab === 'share' && (() => {
-          const baseUrl = typeof window !== 'undefined' ? `${window.location.protocol}//${window.location.host}` : 'https://undangan.com';
+          const defaultDomain = 'https://undangan-kita.online';
+          const currentOrigin = typeof window !== 'undefined' ? `${window.location.protocol}//${window.location.host}` : defaultDomain;
+          const baseUrl = useCustomDomain ? defaultDomain : currentOrigin;
           const guestParam = guestNameInput.trim() ? encodeURIComponent(guestNameInput.trim()) : 'Nama+Tamu';
           const generatedLink = `${baseUrl}/?to=${guestParam}`;
           
@@ -205,6 +213,33 @@ Hormat kami,
                 <p className="text-xs text-gray-400">
                   Cukup ketik nama tamu di bawah, link khusus dan format pesan WhatsApp akan otomatis terbuat! Anda tinggal salin atau kirim langsung ke WhatsApp.
                 </p>
+              </div>
+
+              {/* Domain Selection Pill */}
+              <div className="p-4 rounded-2xl bg-black/40 border border-gold-400/20 flex flex-wrap items-center justify-between gap-3">
+                <span className="text-xs text-gray-300 font-serif">Alamat Website untuk Link:</span>
+                <div className="flex items-center gap-2">
+                  <button
+                    onClick={() => setUseCustomDomain(true)}
+                    className={`px-3 py-1 rounded-full text-xs font-semibold transition-all ${
+                      useCustomDomain
+                        ? 'bg-gold-500 text-black shadow-md'
+                        : 'bg-black/60 border border-gold-400/30 text-gray-400 hover:text-white'
+                    }`}
+                  >
+                    undangan-kita.online (Resmi)
+                  </button>
+                  <button
+                    onClick={() => setUseCustomDomain(false)}
+                    className={`px-3 py-1 rounded-full text-xs font-semibold transition-all ${
+                      !useCustomDomain
+                        ? 'bg-gold-500 text-black shadow-md'
+                        : 'bg-black/60 border border-gold-400/30 text-gray-400 hover:text-white'
+                    }`}
+                  >
+                    Domain Browser ({currentOrigin.replace(/^https?:\/\//, '')})
+                  </button>
+                </div>
               </div>
 
               {/* Form Input Guest Name */}
@@ -947,16 +982,55 @@ Hormat kami,
         {/* TAB: KISAH CINTA */}
         {activeTab === 'story' && (
           <div className="p-6 rounded-3xl border border-gold-400/30 bg-[#0d1613]/90 shadow-xl space-y-6">
-            <h3 className="font-serif text-lg font-bold text-gold-200 mb-2 flex items-center gap-2">
-              <Heart className="w-4 h-4 text-gold-400" />
-              <span>Kisah Cinta (Love Story)</span>
-            </h3>
+            <div className="flex items-center justify-between">
+              <div>
+                <h3 className="font-serif text-lg font-bold text-gold-200 mb-1 flex items-center gap-2">
+                  <Heart className="w-4 h-4 text-gold-400" />
+                  <span>Kisah Cinta (Love Story)</span>
+                </h3>
+                <p className="text-xs text-gray-400">
+                  Ubah babak perjalanan kisah cinta Anda, tahun, foto, dan cerita deskripsinya.
+                </p>
+              </div>
+              <button
+                onClick={() => {
+                  const newStory = {
+                    year: "2026",
+                    title: "Babak Baru",
+                    description: "Tuliskan cerita perjalanan kisah cinta Anda di sini...",
+                    image: "/photos/story_1.webp"
+                  };
+                  setFormData((prev) => ({
+                    ...prev,
+                    loveStory: [...prev.loveStory, newStory]
+                  }));
+                }}
+                className="px-3.5 py-1.5 rounded-xl border border-gold-400/40 bg-gold-950/30 hover:bg-gold-500 hover:text-black text-gold-200 text-xs font-serif font-semibold flex items-center gap-1.5 transition-all cursor-pointer"
+              >
+                <Plus className="w-3.5 h-3.5" />
+                <span>Tambah Babak</span>
+              </button>
+            </div>
 
             <div className="space-y-6">
               {formData.loveStory.map((story, idx) => (
-                <div key={idx} className="p-4 rounded-2xl bg-black/40 border border-gold-400/20 grid grid-cols-1 sm:grid-cols-4 gap-4 items-center">
-                  <div className="sm:col-span-1 flex flex-col items-center text-center">
-                    <div className="w-24 h-32 rounded-xl overflow-hidden border border-gold-400/40 mb-2">
+                <div key={idx} className="p-5 rounded-2xl bg-black/40 border border-gold-400/20 grid grid-cols-1 sm:grid-cols-4 gap-4 items-start relative">
+                  {/* Delete button if more than 1 item */}
+                  {formData.loveStory.length > 1 && (
+                    <button
+                      onClick={() => {
+                        const updated = formData.loveStory.filter((_, i) => i !== idx);
+                        setFormData((prev) => ({ ...prev, loveStory: updated }));
+                      }}
+                      className="absolute top-3 right-3 p-1.5 rounded-lg border border-rose-500/30 text-rose-400 hover:bg-rose-500 hover:text-white transition-all cursor-pointer"
+                      title="Hapus Babak Ini"
+                    >
+                      <Trash2 className="w-3.5 h-3.5" />
+                    </button>
+                  )}
+
+                  <div className="sm:col-span-1 flex flex-col items-center text-center pt-1">
+                    <div className="w-24 h-32 rounded-xl overflow-hidden border border-gold-400/40 mb-2 bg-black">
                       <img src={story.image} alt={story.title} className="w-full h-full object-cover" />
                     </div>
                     <button
@@ -967,13 +1041,13 @@ Hormat kami,
                           setFormData((prev) => ({ ...prev, loveStory: updated }));
                         })
                       }
-                      className="px-2.5 py-1 rounded-lg border border-gold-400/40 text-gold-300 text-[10px] hover:bg-gold-500 hover:text-black transition-all"
+                      className="px-2.5 py-1 rounded-lg border border-gold-400/40 text-gold-300 text-[10px] hover:bg-gold-500 hover:text-black transition-all cursor-pointer"
                     >
                       Ganti Foto
                     </button>
                   </div>
 
-                  <div className="sm:col-span-3 space-y-2.5">
+                  <div className="sm:col-span-3 space-y-3 pr-6 sm:pr-8">
                     <div className="grid grid-cols-3 gap-2">
                       <div className="col-span-1">
                         <label className="block text-[10px] uppercase tracking-wider text-gray-400 mb-0.5">Tahun</label>
@@ -985,7 +1059,7 @@ Hormat kami,
                             updated[idx].year = e.target.value;
                             setFormData((prev) => ({ ...prev, loveStory: updated }));
                           }}
-                          className="w-full px-3 py-1.5 rounded-xl bg-black/60 border border-gold-400/30 text-gold-100 text-xs"
+                          className="w-full px-3 py-2 rounded-xl bg-black/60 border border-gold-400/30 text-gold-100 text-xs focus:outline-none focus:border-gold-400"
                         />
                       </div>
                       <div className="col-span-2">
@@ -998,27 +1072,46 @@ Hormat kami,
                             updated[idx].title = e.target.value;
                             setFormData((prev) => ({ ...prev, loveStory: updated }));
                           }}
-                          className="w-full px-3 py-1.5 rounded-xl bg-black/60 border border-gold-400/30 text-gold-100 text-xs"
+                          className="w-full px-3 py-2 rounded-xl bg-black/60 border border-gold-400/30 text-gold-100 text-xs focus:outline-none focus:border-gold-400 font-semibold"
                         />
                       </div>
                     </div>
 
                     <div>
-                      <label className="block text-[10px] uppercase tracking-wider text-gray-400 mb-0.5">Cerita Singkat</label>
+                      <label className="block text-[10px] uppercase tracking-wider text-gray-400 mb-0.5">Kisah / Cerita Babak Ini</label>
                       <textarea
-                        rows={2}
+                        rows={5}
                         value={story.description}
                         onChange={(e) => {
                           const updated = [...formData.loveStory];
                           updated[idx].description = e.target.value;
                           setFormData((prev) => ({ ...prev, loveStory: updated }));
                         }}
-                        className="w-full px-3 py-1.5 rounded-xl bg-black/60 border border-gold-400/30 text-gold-100 text-xs resize-none"
+                        className="w-full px-3.5 py-2.5 rounded-xl bg-black/60 border border-gold-400/30 text-gold-100 text-xs focus:outline-none focus:border-gold-400 resize-y leading-relaxed font-sans"
                       />
                     </div>
                   </div>
                 </div>
               ))}
+
+              <button
+                onClick={() => {
+                  const newStory = {
+                    year: "2026",
+                    title: "Babak Baru",
+                    description: "Tuliskan cerita perjalanan kisah cinta Anda di sini...",
+                    image: "/photos/story_1.webp"
+                  };
+                  setFormData((prev) => ({
+                    ...prev,
+                    loveStory: [...prev.loveStory, newStory]
+                  }));
+                }}
+                className="w-full py-3 rounded-2xl border border-dashed border-gold-400/50 bg-gold-950/20 text-gold-300 hover:bg-gold-500 hover:text-black font-serif text-xs font-semibold flex items-center justify-center gap-2 transition-all cursor-pointer"
+              >
+                <Plus className="w-4 h-4" />
+                <span>+ Tambah Babak Cerita Baru</span>
+              </button>
             </div>
           </div>
         )}
@@ -1026,16 +1119,40 @@ Hormat kami,
         {/* TAB: AMPLOP & KADO */}
         {activeTab === 'gift' && (
           <div className="p-6 rounded-3xl border border-gold-400/30 bg-[#0d1613]/90 shadow-xl space-y-6">
-            <h3 className="font-serif text-lg font-bold text-gold-200 mb-2 flex items-center gap-2">
-              <Gift className="w-4 h-4 text-gold-400" />
-              <span>Amplop Digital & Alamat Pengiriman Kado</span>
-            </h3>
+            <div className="flex items-center justify-between">
+              <div>
+                <h3 className="font-serif text-lg font-bold text-gold-200 mb-1 flex items-center gap-2">
+                  <Gift className="w-4 h-4 text-gold-400" />
+                  <span>Amplop Digital & Alamat Pengiriman Kado</span>
+                </h3>
+                <p className="text-xs text-gray-400">
+                  Atur nomor rekening transfer bank, e-wallet, dan alamat fisik tujuan kirim kado.
+                </p>
+              </div>
+              <button
+                onClick={() => {
+                  const newGift = {
+                    bank: "Bank BCA",
+                    accountNumber: "",
+                    accountName: "MIRA KADIR"
+                  };
+                  setFormData((prev) => ({
+                    ...prev,
+                    giftInfo: [...prev.giftInfo, newGift]
+                  }));
+                }}
+                className="px-3.5 py-1.5 rounded-xl border border-gold-400/40 bg-gold-950/30 hover:bg-gold-500 hover:text-black text-gold-200 text-xs font-serif font-semibold flex items-center gap-1.5 transition-all cursor-pointer"
+              >
+                <Plus className="w-3.5 h-3.5" />
+                <span>Tambah Rekening</span>
+              </button>
+            </div>
 
             <div className="space-y-4">
               {formData.giftInfo.map((gift, idx) => (
-                <div key={idx} className="p-4 rounded-2xl bg-black/40 border border-gold-400/20 grid grid-cols-1 sm:grid-cols-3 gap-3">
+                <div key={idx} className="p-4 rounded-2xl bg-black/40 border border-gold-400/20 grid grid-cols-1 sm:grid-cols-4 gap-3 items-center relative">
                   <div>
-                    <label className="block text-[10px] uppercase tracking-wider text-gray-400 mb-1">Nama Bank</label>
+                    <label className="block text-[10px] uppercase tracking-wider text-gray-400 mb-1">Nama Bank / E-Wallet</label>
                     <input
                       type="text"
                       value={gift.bank}
@@ -1057,7 +1174,7 @@ Hormat kami,
                         updated[idx].accountNumber = e.target.value;
                         setFormData((prev) => ({ ...prev, giftInfo: updated }));
                       }}
-                      className="w-full px-3 py-2 rounded-xl bg-black/60 border border-gold-400/30 text-gold-100 text-xs"
+                      className="w-full px-3 py-2 rounded-xl bg-black/60 border border-gold-400/30 text-gold-100 text-xs font-mono"
                     />
                   </div>
                   <div>
@@ -1070,8 +1187,23 @@ Hormat kami,
                         updated[idx].accountName = e.target.value;
                         setFormData((prev) => ({ ...prev, giftInfo: updated }));
                       }}
-                      className="w-full px-3 py-2 rounded-xl bg-black/60 border border-gold-400/30 text-gold-100 text-xs"
+                      className="w-full px-3 py-2 rounded-xl bg-black/60 border border-gold-400/30 text-gold-100 text-xs uppercase"
                     />
+                  </div>
+                  <div className="flex sm:justify-center">
+                    {formData.giftInfo.length > 1 && (
+                      <button
+                        onClick={() => {
+                          const updated = formData.giftInfo.filter((_, i) => i !== idx);
+                          setFormData((prev) => ({ ...prev, giftInfo: updated }));
+                        }}
+                        className="px-3 py-2 rounded-xl border border-rose-500/30 text-rose-400 hover:bg-rose-500 hover:text-white text-xs flex items-center gap-1 transition-all cursor-pointer"
+                        title="Hapus Rekening Ini"
+                      >
+                        <Trash2 className="w-3.5 h-3.5" />
+                        <span className="sm:hidden">Hapus</span>
+                      </button>
+                    )}
                   </div>
                 </div>
               ))}
@@ -1135,7 +1267,7 @@ Hormat kami,
                       ...prev,
                       turutMengundang: {
                         ...prev.turutMengundang,
-                        brideSide: e.target.value.split('\n').filter((x) => x.trim().length > 0)
+                        brideSide: e.target.value.split('\n')
                       }
                     }))
                   }
@@ -1155,7 +1287,7 @@ Hormat kami,
                       ...prev,
                       turutMengundang: {
                         ...prev.turutMengundang,
-                        groomSide: e.target.value.split('\n').filter((x) => x.trim().length > 0)
+                        groomSide: e.target.value.split('\n')
                       }
                     }))
                   }

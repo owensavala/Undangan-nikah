@@ -1,5 +1,25 @@
 export const THEME_PRESETS = [
   {
+    id: 'charcoal-editorial',
+    name: 'Van & Rama Minimalist Charcoal',
+    description: 'Hitam arang elegan (#2B2B2B) dipadu kartu putih bersih sesuai template referensi.',
+    previewColors: ['#2B2B2B', '#FFFFFF', '#666666'],
+    variables: {
+      '--theme-bg': '#2B2B2B',
+      '--theme-card': '#FFFFFF',
+      '--color-gold-50': '#FAFAFA',
+      '--color-gold-100': '#F5F5F5',
+      '--color-gold-200': '#E5E5E5',
+      '--color-gold-300': '#D4D4D4',
+      '--color-gold-400': '#A3A3A3',
+      '--color-gold-500': '#737373',
+      '--color-gold-600': '#525252',
+      '--color-gold-700': '#404040',
+      '--color-gold-800': '#2B2B2B',
+      '--color-gold-900': '#171717',
+    }
+  },
+  {
     id: 'emerald-gold',
     name: 'Royal Emerald & Gold',
     description: 'Nuansa hijau zamrud mewah dipadu aksen emas kerajaan.',

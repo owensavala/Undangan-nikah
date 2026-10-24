@@ -3,7 +3,7 @@ export const invitationData = {
     pin: "1212"
   },
   theme: {
-    preset: 'emerald-gold',
+    preset: 'charcoal-editorial',
     bgBrightness: 45, // Slider 20% - 80%
     galleryLayout: 'slider' // 'slider' | 'grid'
   },
