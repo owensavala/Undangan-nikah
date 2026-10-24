@@ -9,20 +9,20 @@ export const invitationData = {
   },
   couple: {
     bride: {
-      fullName: "dr. Mira Amelia Putri, S.Ked",
+      fullName: "Mira Kadir, S.P",
       shortName: "Mira",
       role: "Mempelai Wanita",
-      parents: "Putri tercinta dari Bapak H. Bambang Hartono & Ibu Hj. Siti Rohmah",
-      instagram: "mira.amelia",
+      parents: "Putri tercinta dari Bapak Kadir Lut & Ibu Hakima Jamil",
+      instagram: "mira.kadir",
       photo: "/photos/bride_portrait.webp",
       bgPhoto: "/photos/collage_1.webp"
     },
     groom: {
-      fullName: "Wahyudi, S.T.",
+      fullName: "Wahyudi Lapa",
       shortName: "Wahyudi",
       role: "Mempelai Pria",
-      parents: "Putra tercinta dari Bapak Ir. H. Agus Prasetyo & Ibu Dra. Hj. Endang Sulastri",
-      instagram: "wahyudi.official",
+      parents: "Putra tercinta dari Alm. Bapak Lapa & Ibu Marifa Latara",
+      instagram: "wahyudi.lapa",
       photo: "/photos/groom_portrait.webp",
       bgPhoto: "/photos/collage_2.webp"
     },
@@ -68,27 +68,27 @@ export const invitationData = {
   ],
   loveStory: [
     {
-      year: "2021",
+      year: "2023",
       title: "Awal Pertemuan",
-      description: "Pertemuan tak sengaja di sebuah simposium akademik. Percakapan santai tentang cita-cita dan visi hidup yang perlahan menyatukan cara pandang kami.",
+      description: "Sebuah pertemuan sederhana di tahun 2023 mengawali kisah kami. Awalnya, kami hanyalah teman biasa yang saling mengenal saat masing-masing masih memiliki pasangan. Namun, takdir memiliki jalannya sendiri. Waktu berjalan dan kejadian yang tak terduga perlahan membawa kami menjadi semakin dekat.",
       image: "/photos/story_1.webp"
     },
     {
       year: "2023",
-      title: "Menjalani Komitmen",
-      description: "Menyadari bahwa setiap tantangan terasa lebih ringan saat saling menguatkan. Kami sepakat untuk saling menemani dalam setiap proses pendewasaan diri.",
+      title: "Merajut Asa Bersama",
+      description: "Berawal dari obrolan-obrolan kecil, kedekatan itu semakin erat. Siapa sangka, dunia sepak bola melalui perhelatan Open Tournament Bupati Cup 2023 menjadi alasan yang menyatukan kami. Dari sanalah kami memutuskan untuk mulai merajut asa bersama, sebuah awal yang tak pernah kami bayangkan sebelumnya.",
       image: "/photos/story_2.webp"
     },
     {
-      year: "2025",
-      title: "Hari Lamaran",
-      description: "Di hadapan kedua keluarga besar, sebuah ikrar suci terucap dan cincin pertunangan disematkan sebagai tanda kesungguhan menuju pelaminan.",
+      year: "2024",
+      title: "Belajar & Bertumbuh",
+      description: "Tentu, perjalanan ini tidak luput dari ujian dan rintangan. Namun, dari segala masalah yang menghampiri, kami belajar satu hal berharga: bahwa hubungan yang sehat dan baik harus dilandasi oleh rasa sabar dari yang satu, dan keikhlasan dari yang lainnya.",
       image: "/photos/story_3.webp"
     },
     {
       year: "2026",
-      title: "Menuju Babak Baru",
-      description: "Dengan memohon ridho Allah SWT dan restu kedua orang tua, hari bahagia yang dinanti akhirnya tiba untuk merajut janji seumur hidup.",
+      title: "Menuju Pernikahan",
+      description: "Hingga pada akhirnya, dengan penuh keyakinan kami memutuskan untuk menyempurnakan cerita ini dan melangkah ke jenjang pernikahan pada tahun 2026.",
       image: "/photos/story_4.webp"
     }
   ],
@@ -108,36 +108,32 @@ export const invitationData = {
   ],
   turutMengundang: {
     brideSide: [
-      "Kel. Besar H. Bambang Hartono",
-      "Kel. Besar H. Syamsuddin (Alm)",
-      "Bpk. Dr. Ir. H. Faisal Anwar, M.T.",
-      "Ibu Hj. Ratna Juwita, S.E.",
-      "Kel. Besar Bani H. Abdullah"
+      "Kel. Besar Kadir Lut",
+      "Kel. Besar Hakima Jamil",
+      "Serta Seluruh Keluarga Besar Mempelai Wanita"
     ],
     groomSide: [
-      "Kel. Besar Ir. H. Agus Prasetyo",
-      "Kel. Besar H. Soedarsono (Alm)",
-      "Bpk. Brigjen TNI (Purn) Hendro W.",
-      "Kel. Besar Trah Mangunwijaya",
-      "Sahabat & Rekan Sejawat Alumni"
+      "Kel. Besar Alm. Lapa",
+      "Kel. Besar Marifa Latara",
+      "Serta Seluruh Keluarga Besar Mempelai Pria"
     ]
   },
   giftInfo: [
     {
       bank: "Bank BCA",
       accountNumber: "8820 3948 21",
-      accountName: "MIRA AMELIA PUTRI",
+      accountName: "MIRA KADIR",
     },
     {
       bank: "Bank Mandiri",
       accountNumber: "1370 0192 8374 1",
-      accountName: "WAHYUDI",
+      accountName: "WAHYUDI LAPA",
     }
   ],
   giftAddress: {
-    receiver: "dr. Mira Amelia / Wahyudi",
+    receiver: "Mira Kadir, S.P & Wahyudi Lapa",
     phone: "0812-3456-7890",
-    fullAddress: "The Glass House Residence, Jl. Brawijaya Raya No. 26 RT 02 / RW 03, Kebayoran Baru, Jakarta Selatan, 12160"
+    fullAddress: "Bacan - Ternate, Maluku Utara"
   },
   audioUrl: "https://my-invita.com/wp-content/uploads/2025/12/Nadin-Amizah-Di-Akhir-Perang-Official-Music-Video.mp3",
   quotes: {
