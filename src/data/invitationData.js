@@ -14,7 +14,7 @@ export const invitationData = {
       role: "Mempelai Wanita",
       parents: "Putri tercinta dari Bapak Kadir Lut & Ibu Hakima Jamil",
       instagram: "mira.kadir",
-      photo: "/photos/bride_portrait.webp",
+      photo: "/photos/wanita.webp",
       bgPhoto: "/photos/collage_1.webp",
       objectPosition: "center top"
     },
@@ -24,7 +24,7 @@ export const invitationData = {
       role: "Mempelai Pria",
       parents: "Putra ke-2 dari Bpk. Alm. La Ode Lapa & Ibu Marifa Latara",
       instagram: "wahyudi.lapa",
-      photo: "/photos/groom_portrait.webp",
+      photo: "/photos/pria.webp",
       bgPhoto: "/photos/collage_2.webp",
       objectPosition: "center top"
     },
