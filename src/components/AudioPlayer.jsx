@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Volume2, VolumeX, Music } from 'lucide-react';
+import { Volume2, VolumeX, Disc } from 'lucide-react';
 
 export default function AudioPlayer({ audioUrl, isInvitationOpened }) {
   const [isPlaying, setIsPlaying] = useState(false);
@@ -7,7 +7,7 @@ export default function AudioPlayer({ audioUrl, isInvitationOpened }) {
 
   useEffect(() => {
     if (audioRef.current) {
-      audioRef.current.volume = 0.55;
+      audioRef.current.volume = 0.6;
     }
   }, []);
 
@@ -36,34 +36,20 @@ export default function AudioPlayer({ audioUrl, isInvitationOpened }) {
     }
   };
 
+  if (!isInvitationOpened) return null;
+
   return (
     <>
       <audio ref={audioRef} src={audioUrl} loop preload="auto" />
       
       {/* Floating Audio Controller */}
-      <div className="fixed bottom-6 right-6 z-40">
+      <div className="fixed bottom-4 right-4 z-40">
         <button
           onClick={togglePlay}
           aria-label="Toggle Background Music"
-          className={`group flex items-center justify-center w-12 h-12 rounded-full border border-gold-400/50 bg-[#0e1713]/90 text-gold-300 shadow-xl backdrop-blur-md transition-all duration-300 hover:scale-110 active:scale-95 ${
-            isPlaying ? 'gold-glow ring-2 ring-gold-400/30' : 'opacity-70'
-          }`}
+          className="flex items-center justify-center w-10 h-10 rounded-full bg-black/85 hover:bg-black text-white shadow-2xl backdrop-blur-md border border-white/20 transition-all duration-300 hover:scale-105 active:scale-95 cursor-pointer"
         >
-          <div className={`relative flex items-center justify-center ${isPlaying ? 'animate-spinSlow' : ''}`}>
-            {isPlaying ? (
-              <Music className="w-5 h-5 text-gold-300" />
-            ) : (
-              <VolumeX className="w-5 h-5 text-gray-400" />
-            )}
-          </div>
-          
-          {/* Subtle pulse wave if playing */}
-          {isPlaying && (
-            <span className="absolute -top-1 -right-1 flex h-3 w-3">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-gold-400 opacity-75"></span>
-              <span className="relative inline-flex rounded-full h-3 w-3 bg-gold-500"></span>
-            </span>
-          )}
+          <Disc className={`w-5 h-5 text-white ${isPlaying ? 'animate-spinSlow' : ''}`} />
         </button>
       </div>
     </>

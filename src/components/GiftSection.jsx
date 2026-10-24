@@ -1,14 +1,12 @@
 import React, { useState } from 'react';
-import { Gift, Copy, Check, MapPin, CreditCard } from 'lucide-react';
-import { motion } from 'framer-motion';
+import { Gift, Copy, Check, MapPin } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
 
 export default function GiftSection({ data }) {
   const [copiedBank, setCopiedBank] = useState(null);
   const [copiedAddress, setCopiedAddress] = useState(false);
   const [showAddress, setShowAddress] = useState(false);
   const [isAmplopOpen, setIsAmplopOpen] = useState(false);
-
-  const brightness = (data.theme?.bgBrightness ?? 45) / 100;
 
   const handleCopyAccount = (accountNumber, bankName) => {
     navigator.clipboard.writeText(accountNumber.replace(/\s+/g, ''));
@@ -23,151 +21,114 @@ export default function GiftSection({ data }) {
   };
 
   return (
-    <section className="relative py-20 px-4 border-t border-gold-400/20 overflow-hidden">
-      {/* Full Photo Background */}
-      <div 
-        className="absolute inset-0 bg-cover bg-center transition-all duration-700"
-        style={{ 
-          backgroundImage: `url(${data.couple.giftBg || '/photos/collage_3.webp'})`,
-          filter: `brightness(${brightness})`
-        }}
-      />
-      <div className="absolute inset-0 bg-gradient-to-b from-[#09110e]/95 via-[#09110e]/75 to-[#09110e]/95 backdrop-blur-[1px]" />
-
-      <div className="relative z-10 max-w-md mx-auto">
+    <section className="relative py-16 px-4 bg-[#2B2B2B] text-white text-center">
+      <div className="relative z-10 max-w-sm mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 25 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.7 }}
-          className="text-center mb-12"
+          className="text-center mb-6"
         >
-          <span className="text-[10px] uppercase tracking-[0.35em] text-gold-400 font-semibold">
-            Tanda Kasih
-          </span>
-          <h2 className="font-serif text-3xl sm:text-4xl text-gold-100 mt-1 mb-2">
+          <h2 className="font-serif text-3xl font-medium text-white mb-2">
             Amplop Digital
           </h2>
-          <div className="h-0.5 w-12 bg-gold-400/50 mx-auto rounded-full" />
-          <p className="text-xs text-gray-300 max-w-sm mx-auto mt-3 leading-relaxed">
+          <div className="h-[1px] w-14 bg-white/40 mx-auto mb-4" />
+          <p className="text-xs text-gray-300 leading-relaxed px-2 mb-6">
             Doa Restu Anda merupakan karunia yang sangat berarti bagi kami. Namun jika memberi adalah ungkapan tanda kasih Anda, Anda dapat memberi kado secara cashless.
           </p>
 
-          {/* Kirim Amplop Toggle Button (Matching reference) */}
-          <motion.button
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
+          {/* Kirim Amplop Toggle Button (Crisp white border matching reference) */}
+          <button
             onClick={() => setIsAmplopOpen(!isAmplopOpen)}
-            className="mt-6 inline-flex items-center gap-2.5 px-8 py-3.5 rounded-full font-serif text-xs uppercase tracking-widest font-bold text-gray-950 bg-gradient-to-r from-gold-200 via-gold-400 to-gold-500 shadow-xl shadow-gold-500/20 transition-all cursor-pointer"
-          >
-            <Gift className="w-4 h-4 text-gray-950" />
-            <span>{isAmplopOpen ? 'Tutup Amplop' : 'Kirim Amplop'}</span>
-          </motion.button>
-        </motion.div>
-
-        {/* Bank Account Cards (Expandable) */}
-        {isAmplopOpen && (
-        <div className="space-y-4 mb-8">
-          {data.giftInfo.map((gift, idx) => (
-            <motion.div
-              key={idx}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.7, delay: idx * 0.15 }}
-              whileHover={{ y: -3 }}
-              className="p-6 rounded-3xl border border-gold-400/35 bg-[#0d1613]/85 backdrop-blur-xl text-left relative overflow-hidden shadow-xl"
-            >
-              <div className="flex items-center justify-between mb-4">
-                <span className="text-sm font-bold tracking-widest uppercase text-gold-300 font-display">
-                  {gift.bank}
-                </span>
-                <CreditCard className="w-5 h-5 text-gold-400/80" />
-              </div>
-
-              <div className="mb-5">
-                <span className="text-[10px] tracking-wider uppercase text-gray-400 block mb-0.5">
-                  Nomor Rekening:
-                </span>
-                <p className="font-mono text-xl font-bold tracking-widest text-gold-100">
-                  {gift.accountNumber}
-                </p>
-                <p className="text-xs text-gold-300/80 mt-1 font-serif uppercase tracking-wider">
-                  a.n {gift.accountName}
-                </p>
-              </div>
-
-              <motion.button
-                whileTap={{ scale: 0.96 }}
-                onClick={() => handleCopyAccount(gift.accountNumber, gift.bank)}
-                className="w-full py-2.5 px-4 rounded-xl border border-gold-400/40 bg-gold-950/60 hover:bg-gold-500 hover:text-black text-gold-200 text-xs font-semibold tracking-wider uppercase flex items-center justify-center gap-2 transition-all duration-300 shadow-md"
-              >
-                {copiedBank === gift.bank ? (
-                  <>
-                    <Check className="w-4 h-4 text-emerald-400" />
-                    <span className="text-emerald-300">Tersalin ke Clipboard!</span>
-                  </>
-                ) : (
-                  <>
-                    <Copy className="w-3.5 h-3.5" />
-                    <span>Salin Rekening</span>
-                  </>
-                )}
-              </motion.button>
-            </motion.div>
-          ))}
-        </div>
-        )}
-
-        {/* Physical Gift Accordion */}
-        <div className="text-center">
-          <motion.button
-            whileHover={{ scale: 1.03 }}
-            whileTap={{ scale: 0.97 }}
-            onClick={() => setShowAddress(!showAddress)}
-            className="inline-flex items-center gap-2 text-xs uppercase tracking-wider text-gold-400 hover:text-gold-200 underline underline-offset-4 font-medium transition-colors"
+            className="border border-white/80 bg-black/40 hover:bg-white hover:text-black text-white text-xs font-serif uppercase tracking-widest px-7 py-3 rounded-lg inline-flex items-center gap-2 shadow-xl transition-all duration-300 cursor-pointer"
           >
             <Gift className="w-4 h-4" />
-            <span>{showAddress ? 'Tutup Alamat Kirim Kado' : 'Kirim Hadiah Fisik? Klik Disini'}</span>
-          </motion.button>
+            <span>{isAmplopOpen ? 'Tutup Amplop' : 'Kirim Amplop'}</span>
+          </button>
+        </motion.div>
 
-          {showAddress && (
+        {/* Expandable Bank Account Cards */}
+        <AnimatePresence>
+          {isAmplopOpen && (
             <motion.div
               initial={{ opacity: 0, height: 0 }}
               animate={{ opacity: 1, height: 'auto' }}
               exit={{ opacity: 0, height: 0 }}
-              className="mt-4 p-5 rounded-2xl border border-gold-400/30 bg-[#0d1613]/90 backdrop-blur-md text-left shadow-xl"
+              className="space-y-4 my-6 text-left"
             >
-              <div className="flex items-start gap-3">
-                <MapPin className="w-5 h-5 text-gold-400 shrink-0 mt-0.5" />
-                <div>
-                  <p className="font-semibold text-xs text-gold-200">
-                    Penerima: {data.giftAddress.receiver} ({data.giftAddress.phone})
+              {data.giftInfo.map((gift, idx) => (
+                <div
+                  key={idx}
+                  className="p-5 rounded-2xl bg-white text-gray-800 shadow-xl"
+                >
+                  <p className="text-sm font-bold tracking-wider text-gray-900 uppercase font-serif mb-3">
+                    {gift.bank}
                   </p>
-                  <p className="text-[11px] text-gray-300 mt-1 leading-relaxed">
-                    {data.giftAddress.fullAddress}
-                  </p>
+
+                  <div className="mb-4">
+                    <p className="font-mono text-xl font-bold tracking-widest text-gray-900">
+                      {gift.accountNumber}
+                    </p>
+                    <p className="text-xs text-gray-600 uppercase font-serif mt-0.5">
+                      a.n {gift.accountName}
+                    </p>
+                  </div>
+
                   <button
-                    onClick={() => handleCopyAddress(`${data.giftAddress.receiver} (${data.giftAddress.phone}) - ${data.giftAddress.fullAddress}`)}
-                    className="mt-3 inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-gold-400/40 text-gold-300 text-[11px] font-semibold hover:bg-gold-500 hover:text-black transition-all"
+                    onClick={() => handleCopyAccount(gift.accountNumber, gift.bank)}
+                    className="w-full py-2.5 px-4 rounded-lg bg-[#2B2B2B] hover:bg-black text-white text-xs font-serif uppercase tracking-wider flex items-center justify-center gap-2 transition-all shadow"
                   >
-                    {copiedAddress ? (
+                    {copiedBank === gift.bank ? (
                       <>
-                        <Check className="w-3.5 h-3.5 text-emerald-400" />
-                        <span>Alamat Tersalin!</span>
+                        <Check className="w-4 h-4 text-emerald-400" />
+                        <span>Tersalin!</span>
                       </>
                     ) : (
                       <>
-                        <Copy className="w-3 h-3" />
-                        <span>Salin Alamat</span>
+                        <Copy className="w-3.5 h-3.5" />
+                        <span>Salin Rekening</span>
                       </>
                     )}
                   </button>
                 </div>
+              ))}
+
+              {/* Physical Gift Address */}
+              <div className="text-center pt-2">
+                <button
+                  onClick={() => setShowAddress(!showAddress)}
+                  className="text-xs text-white/80 underline underline-offset-4 hover:text-white"
+                >
+                  {showAddress ? 'Tutup Alamat Hadiah Fisik' : 'Kirim Hadiah Fisik? Klik Disini'}
+                </button>
+
+                {showAddress && (
+                  <div className="mt-3 p-4 rounded-2xl bg-white text-gray-800 text-left shadow-lg">
+                    <div className="flex items-start gap-2.5">
+                      <MapPin className="w-4 h-4 text-gray-700 shrink-0 mt-0.5" />
+                      <div>
+                        <p className="font-bold text-xs text-gray-900">
+                          {data.giftAddress.receiver} ({data.giftAddress.phone})
+                        </p>
+                        <p className="text-[11px] text-gray-600 mt-1 leading-relaxed">
+                          {data.giftAddress.fullAddress}
+                        </p>
+                        <button
+                          onClick={() => handleCopyAddress(`${data.giftAddress.receiver} (${data.giftAddress.phone}) - ${data.giftAddress.fullAddress}`)}
+                          className="mt-3 inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md bg-[#2B2B2B] text-white text-[11px] font-semibold"
+                        >
+                          {copiedAddress ? <Check className="w-3 h-3 text-emerald-400" /> : <Copy className="w-3 h-3" />}
+                          <span>{copiedAddress ? 'Tersalin!' : 'Salin Alamat'}</span>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                )}
               </div>
             </motion.div>
           )}
-        </div>
+        </AnimatePresence>
       </div>
     </section>
   );

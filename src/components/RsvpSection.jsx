@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Send, CheckCircle2, MessageSquareHeart, HeartHandshake } from 'lucide-react';
+import { Send, CheckCircle2, MessageSquareHeart } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 const INITIAL_WISHES = [
@@ -7,7 +7,6 @@ const INITIAL_WISHES = [
     id: 1,
     name: 'dr. Farhan & Istri',
     attendance: 'hadir',
-    pax: '2 Orang',
     message: 'Barakallahu lakum wa baraka alaikum wa jama\'a bainakuma fii khoir. Selamat menempuh hidup baru dr. Mira dan Mas Wahyudi! Semoga sakinah mawaddah warahmah.',
     date: '10 menit yang lalu'
   },
@@ -15,7 +14,6 @@ const INITIAL_WISHES = [
     id: 2,
     name: 'Keluarga Besar Brawijaya',
     attendance: 'hadir',
-    pax: '2 Orang',
     message: 'Selamat untuk kedua mempelai yang sangat serasi. Semoga Allah SWT senantiasa melimpahkan berkah dan kebahagiaan tak berujung.',
     date: '35 menit yang lalu'
   },
@@ -23,23 +21,19 @@ const INITIAL_WISHES = [
     id: 3,
     name: 'Rian & Rekan Kampus',
     attendance: 'hadir',
-    pax: '1 Orang',
     message: 'Lancar sampai hari H bro Wahyudi & mbak Mira! Selamat berbahagia selamanya!',
     date: '1 jam yang lalu'
   }
 ];
 
-export default function RsvpSection({ data }) {
+export default function RsvpSection() {
   const [wishes, setWishes] = useState(INITIAL_WISHES);
   const [formData, setFormData] = useState({
     name: '',
     attendance: 'hadir',
-    pax: '1 Orang',
     message: ''
   });
   const [submitted, setSubmitted] = useState(false);
-
-  const brightness = (data?.theme?.bgBrightness ?? 45) / 100;
 
   useEffect(() => {
     const saved = localStorage.getItem('wedding_wishes_mira_wahyudi');
@@ -58,7 +52,6 @@ export default function RsvpSection({ data }) {
       id: Date.now(),
       name: formData.name,
       attendance: formData.attendance,
-      pax: formData.pax,
       message: formData.message,
       date: 'Baru saja'
     };
@@ -70,165 +63,109 @@ export default function RsvpSection({ data }) {
     setFormData({
       name: '',
       attendance: 'hadir',
-      pax: '1 Orang',
       message: ''
     });
 
     setSubmitted(true);
-    setTimeout(() => setSubmitted(false), 4000);
+    setTimeout(() => setSubmitted(false), 3000);
   };
 
   return (
-    <section className="relative py-20 px-4 border-t border-gold-400/20 overflow-hidden">
-      {/* Full Photo Background */}
-      <div 
-        className="absolute inset-0 bg-cover bg-center transition-all duration-700"
-        style={{ 
-          backgroundImage: `url(${data?.couple?.rsvpBg || '/photos/collage_5.webp'})`,
-          filter: `brightness(${brightness})`
-        }}
-      />
-      <div className="absolute inset-0 bg-gradient-to-b from-[#09110e]/95 via-[#09110e]/80 to-[#09110e]/95 backdrop-blur-[1px]" />
-
-      <div className="relative z-10 max-w-md mx-auto">
+    <section id="guestbook" className="relative py-16 px-4 bg-white text-gray-800 text-center border-t border-gray-100">
+      <div className="relative z-10 max-w-sm mx-auto">
         <motion.div
-          initial={{ opacity: 0, y: 25 }}
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.7 }}
-          className="text-center mb-12"
+          className="text-center mb-8"
         >
-          <span className="text-[10px] uppercase tracking-[0.35em] text-gold-400 font-semibold">
-            Ucapan & Kehadiran
-          </span>
-          <h2 className="font-serif text-3xl sm:text-4xl text-gold-100 mt-1 mb-2">
-            Buku Tamu / RSVP
+          <h2 className="font-serif text-2xl sm:text-3xl font-medium text-gray-900 mb-2">
+            Ucapan &amp; Doa Restu
           </h2>
-          <div className="h-0.5 w-12 bg-gold-400/50 mx-auto rounded-full" />
+          <div className="h-[1px] w-14 bg-gray-300 mx-auto mb-3" />
+          <p className="text-xs text-gray-500 leading-relaxed">
+            Berikan doa dan ucapan terbaik untuk kedua mempelai
+          </p>
         </motion.div>
 
-        <div className="space-y-8">
-          {/* Form RSVP */}
-          <div className="p-6 rounded-3xl border border-gold-400/35 bg-[#0d1613]/85 backdrop-blur-xl shadow-xl">
-            <h3 className="font-serif text-lg font-bold text-gold-200 mb-4 flex items-center gap-2">
-              <HeartHandshake className="w-5 h-5 text-gold-400" />
-              <span>Konfirmasi Kehadiran</span>
-            </h3>
-
-            <form onSubmit={handleSubmit} className="space-y-4 text-left">
-              <div>
-                <label className="block text-[11px] font-medium text-gold-300 mb-1 uppercase tracking-wider">
-                  Nama Lengkap *
-                </label>
-                <input
-                  type="text"
-                  required
-                  value={formData.name}
-                  onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                  placeholder="Contoh: Hendy Pratama & Rekan"
-                  className="w-full px-4 py-2.5 rounded-xl bg-black/50 border border-gold-400/30 text-gold-100 placeholder-gray-500 text-xs focus:outline-none focus:border-gold-400 transition-all"
-                />
-              </div>
-
-              <div className="grid grid-cols-2 gap-3">
-                <div>
-                  <label className="block text-[11px] font-medium text-gold-300 mb-1 uppercase tracking-wider">
-                    Kehadiran
-                  </label>
-                  <select
-                    value={formData.attendance}
-                    onChange={(e) => setFormData({ ...formData, attendance: e.target.value })}
-                    className="w-full px-3 py-2.5 rounded-xl bg-[#0e1713] border border-gold-400/30 text-gold-200 text-xs focus:outline-none focus:border-gold-400"
-                  >
-                    <option value="hadir">Pasti Hadir</option>
-                    <option value="ragu">Masih Ragu</option>
-                    <option value="tidak">Tidak Hadir</option>
-                  </select>
-                </div>
-
-                <div>
-                  <label className="block text-[11px] font-medium text-gold-300 mb-1 uppercase tracking-wider">
-                    Jumlah Tamu
-                  </label>
-                  <select
-                    value={formData.pax}
-                    onChange={(e) => setFormData({ ...formData, pax: e.target.value })}
-                    className="w-full px-3 py-2.5 rounded-xl bg-[#0e1713] border border-gold-400/30 text-gold-200 text-xs focus:outline-none focus:border-gold-400"
-                  >
-                    <option value="1 Orang">1 Orang</option>
-                    <option value="2 Orang">2 Orang</option>
-                  </select>
-                </div>
-              </div>
-
-              <div>
-                <label className="block text-[11px] font-medium text-gold-300 mb-1 uppercase tracking-wider">
-                  Doa & Ucapan *
-                </label>
-                <textarea
-                  required
-                  rows={3}
-                  value={formData.message}
-                  onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                  placeholder="Tuliskan ucapan dan doa tulus untuk kedua mempelai..."
-                  className="w-full px-4 py-2.5 rounded-xl bg-black/50 border border-gold-400/30 text-gold-100 placeholder-gray-500 text-xs focus:outline-none focus:border-gold-400 transition-all resize-none"
-                />
-              </div>
-
-              <button
-                type="submit"
-                className="w-full py-3 px-6 rounded-xl font-serif text-xs font-bold uppercase tracking-wider text-black bg-gradient-to-r from-gold-200 via-gold-400 to-gold-500 hover:from-gold-100 hover:to-gold-300 flex items-center justify-center gap-2 shadow-lg transition-all"
-              >
-                <Send className="w-3.5 h-3.5" />
-                <span>Kirim Konfirmasi & Doa</span>
-              </button>
-
-              {submitted && (
-                <div className="p-3 rounded-xl bg-emerald-950/80 border border-emerald-400/50 flex items-center gap-2 text-xs text-emerald-300">
-                  <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
-                  <span>Terima kasih! Ucapan Anda telah tersimpan.</span>
-                </div>
-              )}
-            </form>
+        {/* RSVP Form */}
+        <form onSubmit={handleSubmit} className="p-5 rounded-2xl bg-gray-50 border border-gray-200 text-left mb-8 shadow-sm">
+          <div className="mb-4">
+            <label className="block text-[11px] font-bold uppercase tracking-wider text-gray-700 mb-1">
+              Nama Anda
+            </label>
+            <input
+              type="text"
+              required
+              value={formData.name}
+              onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+              placeholder="Contoh: Bpk. Ahmad & Keluarga"
+              className="w-full px-3.5 py-2.5 rounded-lg border border-gray-300 bg-white text-gray-900 text-xs focus:ring-1 focus:ring-gray-900 focus:outline-none"
+            />
           </div>
 
-          {/* List of Wishes */}
-          <div className="p-6 rounded-3xl border border-gold-400/35 bg-[#0d1613]/85 backdrop-blur-xl shadow-xl max-h-[460px] flex flex-col">
-            <h3 className="font-serif text-lg font-bold text-gold-200 mb-4 flex items-center justify-between">
-              <span className="flex items-center gap-2">
-                <MessageSquareHeart className="w-5 h-5 text-gold-400" />
-                <span>Doa Restu ({wishes.length})</span>
-              </span>
-            </h3>
+          <div className="mb-4">
+            <label className="block text-[11px] font-bold uppercase tracking-wider text-gray-700 mb-1">
+              Konfirmasi Kehadiran
+            </label>
+            <select
+              value={formData.attendance}
+              onChange={(e) => setFormData({ ...formData, attendance: e.target.value })}
+              className="w-full px-3 py-2.5 rounded-lg border border-gray-300 bg-white text-gray-900 text-xs focus:ring-1 focus:ring-gray-900 focus:outline-none"
+            >
+              <option value="hadir">Hadir</option>
+              <option value="tidak_hadir">Maaf, Tidak Bisa Hadir</option>
+              <option value="ragu">Masih Ragu</option>
+            </select>
+          </div>
 
-            <div className="space-y-3 overflow-y-auto pr-1 flex-1 custom-scrollbar text-left">
-              {wishes.map((item) => (
-                <div
-                  key={item.id}
-                  className="p-3.5 rounded-2xl bg-black/50 border border-gold-400/20"
-                >
-                  <div className="flex items-center justify-between mb-1">
-                    <p className="font-serif font-bold text-xs text-gold-100">
-                      {item.name}
-                    </p>
-                    <span className={`text-[9px] px-2 py-0.5 rounded-full font-medium ${
-                      item.attendance === 'hadir'
-                        ? 'bg-emerald-950/80 text-emerald-400 border border-emerald-500/30'
-                        : 'bg-rose-950/80 text-rose-400 border border-rose-500/30'
-                    }`}>
-                      {item.attendance === 'hadir' ? 'Hadir' : 'Berhalangan'}
-                    </span>
-                  </div>
-                  <p className="text-[11px] text-gray-300 leading-relaxed font-sans">
-                    {item.message}
-                  </p>
-                  <p className="text-[9px] text-gray-500 text-right mt-1">
-                    {item.date}
-                  </p>
-                </div>
-              ))}
+          <div className="mb-4">
+            <label className="block text-[11px] font-bold uppercase tracking-wider text-gray-700 mb-1">
+              Ucapan &amp; Doa
+            </label>
+            <textarea
+              required
+              rows={3}
+              value={formData.message}
+              onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+              placeholder="Tuliskan ucapan dan doa terbaik..."
+              className="w-full px-3.5 py-2.5 rounded-lg border border-gray-300 bg-white text-gray-900 text-xs focus:ring-1 focus:ring-gray-900 focus:outline-none"
+            />
+          </div>
+
+          <button
+            type="submit"
+            className="w-full py-2.5 rounded-lg bg-[#2B2B2B] hover:bg-black text-white text-xs font-serif uppercase tracking-wider font-medium flex items-center justify-center gap-2 shadow transition-all"
+          >
+            <Send className="w-3.5 h-3.5" />
+            <span>Kirim Ucapan</span>
+          </button>
+
+          {submitted && (
+            <div className="mt-3 p-2 rounded bg-emerald-50 text-emerald-700 text-xs text-center flex items-center justify-center gap-1.5">
+              <CheckCircle2 className="w-3.5 h-3.5" />
+              <span>Terima kasih atas doa restunya!</span>
             </div>
-          </div>
+          )}
+        </form>
+
+        {/* Wishes List */}
+        <div className="space-y-3 max-h-72 overflow-y-auto text-left pr-1">
+          {wishes.map((w) => (
+            <div key={w.id} className="p-3.5 rounded-xl bg-gray-50 border border-gray-100">
+              <div className="flex items-center justify-between mb-1">
+                <span className="font-bold text-xs text-gray-900">{w.name}</span>
+                <span className="text-[10px] text-gray-400">{w.date}</span>
+              </div>
+              <span className={`inline-block text-[10px] px-2 py-0.5 rounded-full mb-1.5 font-medium ${
+                w.attendance === 'hadir' ? 'bg-emerald-100 text-emerald-700' : 'bg-gray-200 text-gray-600'
+              }`}>
+                {w.attendance === 'hadir' ? 'Hadir' : 'Tidak Hadir'}
+              </span>
+              <p className="text-xs text-gray-700 leading-relaxed font-sans">{w.message}</p>
+            </div>
+          ))}
         </div>
       </div>
     </section>
