@@ -6,10 +6,10 @@ export default function HeroSection({ data }) {
     <div id="home" className="relative">
       {/* 1. HERO TOP: FULL PHOTO WITH ELEGANT SERIF & MOUNTAINS BOTTOM DIVIDER */}
       <section className="relative min-h-[85vh] sm:min-h-[90vh] flex flex-col items-center justify-center text-center px-4 pt-16 pb-20 overflow-hidden">
-        {/* Full Screen Background Photo */}
+        {/* Full Screen Background Photo (Different from the outer cover) */}
         <div 
           className="absolute inset-0 bg-cover bg-center filter brightness-[0.7]"
-          style={{ backgroundImage: `url(${data.couple.coverPhoto})` }}
+          style={{ backgroundImage: `url(${data.couple.heroPhoto || data.couple.coupleStanding || data.couple.coverPhoto})` }}
         />
         <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-transparent to-black/75" />
 

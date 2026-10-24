@@ -406,7 +406,8 @@ Hormat kami,
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 {[
-                  { label: "Background Cover Layar Pembuka", key: "coverPhoto", desc: "Foto saat tamu pertama kali membuka website" },
+                  { label: "Foto Sampul Depan (Cover Luar)", key: "coverPhoto", desc: "Foto layar awal sebelum tamu klik Buka Undangan" },
+                  { label: "Foto Pertama Setelah Masuk (Hero)", key: "heroPhoto", desc: "Foto utama di bagian atas saat undangan terbuka" },
                   { label: "Background Seksi Ayat Ar-Rum 21", key: "quotePhoto", desc: "Latar belakang di bawah kutipan suci" },
                   { label: "Background Save The Date / Countdown", key: "countdownPhoto", desc: "Latar belakang di bawah 4 kotak hitung mundur" },
                   { label: "Background Jadwal Akad & Resepsi", key: "eventsBg", desc: "Latar belakang di seksi jadwal acara pernikahan" },
