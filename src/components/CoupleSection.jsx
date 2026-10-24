@@ -13,7 +13,16 @@ export default function CoupleSection({ data }) {
   const { bride, groom } = data.couple;
 
   return (
-    <div id="couple" className="relative bg-[#2B2B2B] text-white py-16 px-4">
+    <div id="couple" className="relative bg-[#2B2B2B] text-white pt-14 pb-16 px-4">
+      {/* Shape Divider Top (Opacity Tilt seamlessly transitioning from pure white Surah section) */}
+      <div className="absolute top-0 left-0 right-0 overflow-hidden leading-none z-10 pointer-events-none -mt-[1px]">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2600 131.1" preserveAspectRatio="none" className="w-full h-8 sm:h-12 text-white fill-current">
+          <path d="M0 0L2600 0 2600 69.1 0 0z"/>
+          <path opacity="0.5" d="M0 0L2600 0 2600 69.1 0 69.1z"/>
+          <path opacity="0.25" d="M2600 0L0 0 0 130.1 2600 69.1z"/>
+        </svg>
+      </div>
+
       {/* SECTION INTRO */}
       <motion.div
         initial={{ opacity: 0, y: 25 }}
