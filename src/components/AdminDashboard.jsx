@@ -15,6 +15,7 @@ export default function AdminDashboard({ data, onSave, onReset, onClosePreview, 
   const [copiedLink, setCopiedLink] = useState(false);
   const [copiedMsg, setCopiedMsg] = useState(false);
   const [useCustomDomain, setUseCustomDomain] = useState(true);
+  const [linkStyle, setLinkStyle] = useState('named'); // 'named' (/mira-wahyudi) or 'root' (/)
 
   // Sync formData when data prop changes
   useEffect(() => {
@@ -164,7 +165,8 @@ export default function AdminDashboard({ data, onSave, onReset, onClosePreview, 
           const currentOrigin = typeof window !== 'undefined' ? `${window.location.protocol}//${window.location.host}` : defaultDomain;
           const baseUrl = useCustomDomain ? defaultDomain : currentOrigin;
           const guestParam = guestNameInput.trim() ? encodeURIComponent(guestNameInput.trim()) : 'Nama+Tamu';
-          const generatedLink = `${baseUrl}/?to=${guestParam}`;
+          const pathSlug = linkStyle === 'named' ? '/mira-wahyudi' : '';
+          const generatedLink = `${baseUrl}${pathSlug}/?to=${guestParam}`;
           
           const guestDisplayName = guestNameInput.trim() || 'Bapak/Ibu/Saudara/i';
           const waMessage = `Kepada Yth.
@@ -215,29 +217,31 @@ Hormat kami,
                 </p>
               </div>
 
-              {/* Domain Selection Pill */}
-              <div className="p-4 rounded-2xl bg-black/40 border border-gold-400/20 flex flex-wrap items-center justify-between gap-3">
-                <span className="text-xs text-gray-300 font-serif">Alamat Website untuk Link:</span>
-                <div className="flex items-center gap-2">
+              {/* Format Gaya Link Pilihan */}
+              <div className="p-4 rounded-2xl bg-black/40 border border-gold-400/20 space-y-2">
+                <span className="block text-xs text-gray-300 font-serif">Format Gaya Tautan Undangan:</span>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                   <button
-                    onClick={() => setUseCustomDomain(true)}
-                    className={`px-3 py-1 rounded-full text-xs font-semibold transition-all ${
-                      useCustomDomain
-                        ? 'bg-gold-500 text-black shadow-md'
-                        : 'bg-black/60 border border-gold-400/30 text-gray-400 hover:text-white'
+                    onClick={() => setLinkStyle('named')}
+                    className={`px-3 py-2 rounded-xl text-xs font-semibold text-left transition-all border ${
+                      linkStyle === 'named'
+                        ? 'bg-gold-500/20 border-gold-400 text-gold-200 shadow-md'
+                        : 'bg-black/40 border-gold-400/20 text-gray-400 hover:text-white'
                     }`}
                   >
-                    undangan-kita.online (Resmi)
+                    <span className="block text-gold-300 font-bold">✨ Format Nama Mempelai</span>
+                    <span className="text-[10px] text-gray-400 truncate block">.../mira-wahyudi/?to=Nama+Tamu</span>
                   </button>
                   <button
-                    onClick={() => setUseCustomDomain(false)}
-                    className={`px-3 py-1 rounded-full text-xs font-semibold transition-all ${
-                      !useCustomDomain
-                        ? 'bg-gold-500 text-black shadow-md'
-                        : 'bg-black/60 border border-gold-400/30 text-gray-400 hover:text-white'
+                    onClick={() => setLinkStyle('root')}
+                    className={`px-3 py-2 rounded-xl text-xs font-semibold text-left transition-all border ${
+                      linkStyle === 'root'
+                        ? 'bg-gold-500/20 border-gold-400 text-gold-200 shadow-md'
+                        : 'bg-black/40 border-gold-400/20 text-gray-400 hover:text-white'
                     }`}
                   >
-                    Domain Browser ({currentOrigin.replace(/^https?:\/\//, '')})
+                    <span className="block text-gold-300 font-bold">🌐 Format Domain Langsung</span>
+                    <span className="text-[10px] text-gray-400 truncate block">.../?to=Nama+Tamu</span>
                   </button>
                 </div>
               </div>

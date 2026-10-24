@@ -4,7 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import confetti from 'canvas-confetti';
 
 export default function CoverModal({ isOpen, onOpen, data }) {
-  const [guestName, setGuestName] = useState('Mira & Calon');
+  const [guestName, setGuestName] = useState('Bapak / Ibu / Saudara / i');
 
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
