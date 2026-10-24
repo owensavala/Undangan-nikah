@@ -17,7 +17,7 @@ import AdminDashboard from './components/AdminDashboard';
 import AdminLockModal from './components/AdminLockModal';
 import { Home, Users, Calendar, Image, MessageSquare, Settings } from 'lucide-react';
 
-const STORAGE_KEY = 'wedding_data_mira_wahyudi_v7';
+const STORAGE_KEY = 'wedding_data_mira_wahyudi_v8';
 const SESSION_AUTH_KEY = 'wedding_admin_authenticated';
 
 export default function App() {
