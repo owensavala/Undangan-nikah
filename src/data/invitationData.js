@@ -20,9 +20,9 @@ export const invitationData = {
     },
     groom: {
       fullName: "Wahyudi Lapa",
-      shortName: "Wahyudi",
+      shortName: "Yudi",
       role: "Mempelai Pria",
-      parents: "Putra tercinta dari Alm. Bapak Lapa & Ibu Marifa Latara",
+      parents: "Putra ke-2 dari Bpk. Alm. La Ode Lapa & Ibu Marifa Latara",
       instagram: "wahyudi.lapa",
       photo: "/photos/groom_portrait.webp",
       bgPhoto: "/photos/collage_2.webp",
@@ -123,7 +123,7 @@ export const invitationData = {
       "Serta Seluruh Keluarga Besar Mempelai Wanita"
     ],
     groomSide: [
-      "Kel. Besar Alm. Lapa",
+      "Kel. Besar Alm. La Ode Lapa",
       "Kel. Besar Marifa Latara",
       "Serta Seluruh Keluarga Besar Mempelai Pria"
     ]

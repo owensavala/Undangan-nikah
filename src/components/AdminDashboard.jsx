@@ -165,7 +165,7 @@ export default function AdminDashboard({ data, onSave, onReset, onClosePreview, 
           const currentOrigin = typeof window !== 'undefined' ? `${window.location.protocol}//${window.location.host}` : defaultDomain;
           const baseUrl = useCustomDomain ? defaultDomain : currentOrigin;
           const guestParam = guestNameInput.trim() ? encodeURIComponent(guestNameInput.trim()) : 'Nama+Tamu';
-          const pathSlug = linkStyle === 'named' ? '/mira-wahyudi' : '';
+          const pathSlug = linkStyle === 'named' ? '/mira-yudi' : '';
           const generatedLink = `${baseUrl}${pathSlug}/?to=${guestParam}`;
           
           const guestDisplayName = guestNameInput.trim() || 'Bapak/Ibu/Saudara/i';
@@ -230,7 +230,7 @@ Hormat kami,
                     }`}
                   >
                     <span className="block text-gold-300 font-bold">✨ Format Nama Mempelai</span>
-                    <span className="text-[10px] text-gray-400 truncate block">.../mira-wahyudi/?to=Nama+Tamu</span>
+                    <span className="text-[10px] text-gray-400 truncate block">.../mira-yudi/?to=Nama+Tamu</span>
                   </button>
                   <button
                     onClick={() => setLinkStyle('root')}

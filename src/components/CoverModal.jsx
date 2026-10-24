@@ -54,7 +54,7 @@ export default function CoverModal({ isOpen, onOpen, data }) {
             className="relative z-10 w-full max-w-sm px-6 pb-16 sm:pb-8 text-center text-white flex flex-col items-center"
           >
             <p className="font-serif italic text-sm tracking-wider text-white/90 mb-1">
-              The Invitation of
+              The Wedding Of
             </p>
 
             <h1 className="font-serif text-3xl sm:text-4xl text-white font-medium tracking-wide drop-shadow-md mb-2">
