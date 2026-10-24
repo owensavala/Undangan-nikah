@@ -1,0 +1,46 @@
+Inline styles count: 16
+Top sections count: 13
+
+--- Section 1 ---
+Text: The Wedding Of Van &amp; Rama The Invitation of Van &amp; Rama 12 September 2026 Kpd Bpk/Ibu/Saudara/i Mira &amp; Calon Tanpa Mengurangi Rasa Hormat, Kami Mengundang Anda Untuk Hadir di Acara Kami. Buka Undangan if (!jQuery('body').hasClass('elemento
+
+--- Section 2 ---
+Text: QS. Ar-Rum Ayat 21 وَمِنْ اٰيٰتِهٖٓ اَنْ خَلَقَ لَكُمْ مِّنْ اَنْفُسِكُمْ اَزْوَاجًا لِّتَسْكُنُوْٓا اِلَيْهَا وَجَعَلَ بَيْنَكُمْ مَّوَدَّةً وَّرَحْمَةً ۗاِنَّ فِيْ ذٰلِكَ لَاٰيٰتٍ لِّقَوْمٍ يَّتَفَكَّرُوْنَ Dan di antara tanda-tanda (kebesaran)-Nya
+  Images: ['https://my-invitation.com/wp-content/uploads/2024/02/flower-bouquet-2.png', 'https://my-invitation.com/wp-content/uploads/jet-form-builder/b17fcba2b2fd65e34739e2c3936ee22d/2026/08/1a80437a-b3ff-4585-aa3f-03aa12600e2e.jpeg']
+
+--- Section 3 ---
+Text: Assalamu`alaikum Warahmatullaahi Wabarakaatuh Maha Suci Allah yang telah menciptakan makhluk-Nya berpasang-pasangan. Ya Allah semoga ridho-Mu tercurah mengiringi pernikahan kami Faniya Yakub, S.E Putri ke 3 dari Bapak Yakub Une (Alm) &amp; Ibu Sahadi
+  Images: ['https://my-invitation.com/wp-content/uploads/jet-form-builder/ef530aa8a0a7906747c18e36007a2977/2026/08/f4c44d02-9f6d-4a2e-9325-78aaa717020e.jpeg']
+
+--- Section 4 ---
+Text: Count The Date 12 September 2026 0 0 Hari 0 0 Jam 0 0 Menit 0 0 Detik Save the Date
+
+--- Section 5 ---
+Text: Akad Nikah Sabtu, 12 September 2026 09:00 WIT - Selesai Kediaman Mempelai Pria Jln. Inggoi, Kompleks Organsas Petunjuk Arah
+
+--- Section 6 ---
+Text: Resepsi Sabtu, 12 September 2026 20:00 WIT - Selesai Kediaman Mempelai Wanita Jln. Pasar Lama, Kompleks Virgin Petunjuk Arah
+
+--- Section 7 ---
+Text: Our Happy Moments Together
+
+--- Section 8 ---
+Text: Love Story AWAL PERTEMUAN Berawal dari bangku SMP pada tahun 2011. Tak dekat, bahkan hampir tak pernah berbicara. Hingga kembali dipertemukan di SMA, dan akhirnya sebuah pesan sederhana di tahun 2022 membuka kembali cerita yang tak pernah kami sangka
+  Images: ['https://my-invitation.com/wp-content/uploads/jet-form-builder/9e6b4a5955313936053aff155220a131/2026/08/f6e58ea2-6c7a-4499-a6fb-65915da61ab2.jpeg', 'https://my-invitation.com/wp-content/uploads/jet-form-builder/9e6b4a5955313936053aff155220a131/2026/08/25818376-da41-4d6a-9e47-0170f8a4443b.jpeg', 'https://my-invitation.com/wp-content/uploads/jet-form-builder/9e6b4a5955313936053aff155220a131/2026/08/9149ddfd-2353-467a-8e36-9d3ab3da7d31.jpeg', 'https://my-invitation.com/wp-content/uploads/jet-form-builder/9e6b4a5955313936053aff155220a131/2026/08/edd343eb-d573-4f9d-ba59-88bc271a3453.jpeg']
+
+--- Section 9 ---
+Text: Amplop Digital Doa Restu Anda merupakan karunia yang sangat berarti bagi kami. Namun jika memberi adalah ungkapan tanda kasih Anda, Anda dapat memberi kado secara cashless. Kirim Amplop
+
+--- Section 10 ---
+Text: Faniya Yakub 0454290282 0454290282 Salin Rekening .spancontent { padding-bottom: 20px; } .copy-content { color: #6EC1E4; text-align: center; } .head-title { color: #6EC1E4; text-align: center; } function copyText(el) { var content = jQuery(el).siblin
+  Images: ['https://my-invitation.com/wp-content/uploads/2022/01/logo-bni.png']
+
+--- Section 11 ---
+Text: Turut Mengundang Pihak Mempelai Wanita 1. Kel. Besar Une Taibu (Alm) 2. Kel. Besar Daeng Roa (Alm) 3. Kel. Besar Laranggo (Alm) 4. Bpk. Ikram Musa 5. Bpk. Ilham Musa 6. Bpk. Ikbal Kamarullah 7. Bpk. Daud Mudham 8. Bpk. H. Badar M Tahib 9. Kel. Besar 
+
+--- Section 12 ---
+Text: 
+
+--- Section 13 ---
+Text: Made with ❤️ by My Invita
+  Images: ['https://my-invitation.com/wp-content/uploads/2024/02/logo-my-invita-01.png']

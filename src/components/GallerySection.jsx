@@ -76,7 +76,7 @@ export default function GallerySection({ data }) {
             Galeri Kenangan
           </span>
           <h2 className="font-serif text-3xl sm:text-4xl text-gold-100 mt-1 mb-2">
-            Our Happy Moments
+            Our Happy Moments Together
           </h2>
           <div className="h-0.5 w-12 bg-gold-400/50 mx-auto rounded-full mb-4" />
 

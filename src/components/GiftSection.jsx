@@ -6,6 +6,7 @@ export default function GiftSection({ data }) {
   const [copiedBank, setCopiedBank] = useState(null);
   const [copiedAddress, setCopiedAddress] = useState(false);
   const [showAddress, setShowAddress] = useState(false);
+  const [isAmplopOpen, setIsAmplopOpen] = useState(false);
 
   const brightness = (data.theme?.bgBrightness ?? 45) / 100;
 
@@ -51,9 +52,21 @@ export default function GiftSection({ data }) {
           <p className="text-xs text-gray-300 max-w-sm mx-auto mt-3 leading-relaxed">
             Doa Restu Anda merupakan karunia yang sangat berarti bagi kami. Namun jika memberi adalah ungkapan tanda kasih Anda, Anda dapat memberi kado secara cashless.
           </p>
+
+          {/* Kirim Amplop Toggle Button (Matching reference) */}
+          <motion.button
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            onClick={() => setIsAmplopOpen(!isAmplopOpen)}
+            className="mt-6 inline-flex items-center gap-2.5 px-8 py-3.5 rounded-full font-serif text-xs uppercase tracking-widest font-bold text-gray-950 bg-gradient-to-r from-gold-200 via-gold-400 to-gold-500 shadow-xl shadow-gold-500/20 transition-all cursor-pointer"
+          >
+            <Gift className="w-4 h-4 text-gray-950" />
+            <span>{isAmplopOpen ? 'Tutup Amplop' : 'Kirim Amplop'}</span>
+          </motion.button>
         </motion.div>
 
-        {/* Bank Account Cards */}
+        {/* Bank Account Cards (Expandable) */}
+        {isAmplopOpen && (
         <div className="space-y-4 mb-8">
           {data.giftInfo.map((gift, idx) => (
             <motion.div
@@ -104,6 +117,7 @@ export default function GiftSection({ data }) {
             </motion.div>
           ))}
         </div>
+        )}
 
         {/* Physical Gift Accordion */}
         <div className="text-center">

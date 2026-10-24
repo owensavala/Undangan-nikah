@@ -23,7 +23,7 @@ export default function FooterSection({ data }) {
           transition={{ type: "spring", stiffness: 200 }}
           className="w-12 h-12 rounded-full border border-gold-400/50 mx-auto flex items-center justify-center text-gold-300 font-display text-base tracking-widest bg-gold-950/40 shadow-inner"
         >
-          M & D
+          M & W
         </motion.div>
 
         <motion.p
@@ -69,7 +69,7 @@ export default function FooterSection({ data }) {
         <div className="pt-8 text-[11px] text-gray-400 flex items-center justify-center gap-1.5">
           <span>Made with</span>
           <Heart className="w-3.5 h-3.5 text-rose-500 fill-rose-500" />
-          <span>for Mira & Dimas Wedding</span>
+          <span>for Mira & Wahyudi</span>
         </div>
       </div>
     </footer>

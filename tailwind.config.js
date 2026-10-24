@@ -26,6 +26,8 @@ export default {
         serif: ['"Cormorant Garamond"', 'serif'],
         display: ['"Cinzel"', 'serif'],
         script: ['"Great Vibes"', 'cursive'],
+        arabic: ['"Amiri"', 'serif'],
+        playfair: ['"Playfair Display"', 'serif'],
         sans: ['"Plus Jakarta Sans"', 'sans-serif'],
       },
       keyframes: {

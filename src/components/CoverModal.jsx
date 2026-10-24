@@ -64,7 +64,7 @@ export default function CoverModal({ isOpen, onOpen, data }) {
             >
               <div className="h-[1px] w-10 bg-gradient-to-r from-transparent to-gold-400" />
               <div className="w-11 h-11 rounded-full border border-gold-400/50 flex items-center justify-center text-gold-300 font-display text-sm tracking-widest bg-gold-950/50 shadow-inner">
-                M & D
+                M & W
               </div>
               <div className="h-[1px] w-10 bg-gradient-to-l from-transparent to-gold-400" />
             </motion.div>
@@ -75,7 +75,7 @@ export default function CoverModal({ isOpen, onOpen, data }) {
               transition={{ delay: 0.5 }}
               className="text-[10px] uppercase tracking-[0.35em] text-gold-300/80 mb-2 font-medium"
             >
-              The Wedding Invitation
+              The Invitation of
             </motion.p>
 
             {/* Arch Photo with soft float */}
@@ -87,7 +87,7 @@ export default function CoverModal({ isOpen, onOpen, data }) {
             >
               <img
                 src={data.couple.quotePhoto}
-                alt="Mira & Dimas"
+                alt="Mira & Wahyudi"
                 className="w-full h-full object-cover rounded-t-full rounded-b-lg filter contrast-[1.05]"
               />
             </motion.div>
@@ -152,6 +152,15 @@ export default function CoverModal({ isOpen, onOpen, data }) {
               Sentuh tombol untuk membuka & memutar audio
             </motion.p>
           </motion.div>
+
+          {/* Mountains Shape Divider at bottom */}
+          <div className="absolute bottom-0 left-0 right-0 overflow-hidden leading-none z-10 pointer-events-none">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 100" preserveAspectRatio="none" className="w-full h-10 sm:h-14 text-[#070e0b] fill-current">
+              <path opacity="0.33" d="M473,67.3c-203.9,88.3-263.1-34-320.3,0C66,119.1,0,59.7,0,59.7V0h1000v59.7 c0,0-62.1,26.1-94.9,29.3c-32.8,3.3-62.8-12.3-75.8-22.1C806,49.6,745.3,8.7,694.9,4.7S492.4,59,473,67.3z"/>
+              <path opacity="0.66" d="M734,67.3c-45.5,0-77.2-23.2-129.1-39.1c-28.6-8.7-150.3-10.1-254,39.1 s-91.7-34.4-149.2,0C115.7,118.3,0,39.8,0,39.8V0h1000v36.5c0,0-28.2-18.5-92.1-18.5C810.2,18.1,775.7,67.3,734,67.3z"/>
+              <path d="M766.1,28.9c-200-57.5-266,65.5-395.1,19.5C242,1.8,242,5.4,184.8,20.6C128,35.8,132.3,44.9,89.9,52.5C28.6,63.7,0,0,0,0 h1000c0,0-9.9,40.9-83.6,48.1S829.6,47,766.1,28.9z"/>
+            </svg>
+          </div>
         </motion.div>
       )}
     </AnimatePresence>
