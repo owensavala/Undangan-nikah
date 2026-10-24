@@ -104,18 +104,27 @@ export default function HeroSection({ data }) {
             Dan di antara tanda-tanda (kebesaran)-Nya ialah Dia menciptakan pasangan-pasangan untukmu dari jenismu sendiri, agar kamu cenderung dan merasa tenteram kepadanya, dan Dia menjadikan di antaramu rasa kasih dan sayang. Sungguh, pada yang demikian itu benar-benar terdapat tanda-tanda (kebesaran Allah) bagi kaum yang berpikir.
           </motion.p>
 
-          {/* Wide Landscape Couple Photo Sitting on White Background */}
+          {/* Couple Photo Below Verse */}
           <motion.div
             initial={{ opacity: 0, scale: 0.95, y: 30 }}
             whileInView={{ opacity: 1, scale: 1, y: 0 }}
             viewport={{ once: true, amount: 0.2 }}
             transition={{ duration: 0.9, ease: "easeOut" }}
-            className="w-full rounded-2xl overflow-hidden shadow-xl"
+            className="w-full rounded-2xl overflow-hidden shadow-xl bg-gray-100 flex items-center justify-center"
           >
             <img
               src={data.couple.quotePhoto}
               alt="Mira & Wahyudi"
-              className="w-full h-56 sm:h-72 object-cover filter contrast-[1.02]"
+              style={{
+                objectPosition: data.couple.quotePhotoPosition || 'center top'
+              }}
+              className={`w-full ${
+                data.couple.quotePhotoFit === 'landscape'
+                  ? 'h-56 sm:h-72 object-cover'
+                  : data.couple.quotePhotoFit === 'portrait'
+                  ? 'aspect-[3/4] sm:aspect-[4/5] object-cover'
+                  : 'h-auto max-h-[580px] object-cover'
+              } filter contrast-[1.02]`}
               loading="lazy"
             />
           </motion.div>

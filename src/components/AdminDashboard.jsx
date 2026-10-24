@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { 
   Heart, Calendar, Image as ImageIcon, Gift, Users, Music, 
   Save, RotateCcw, Download, Eye, Check, Layers, Palette, Lock, LogOut,
-  Sliders, Sun, Send, Copy, ExternalLink, MessageCircle, Plus, Trash2
+  Sliders, Sun, Send, Copy, ExternalLink, MessageCircle, Plus, Trash2, Upload
 } from 'lucide-react';
 import PhotoPickerModal from './PhotoPickerModal';
 import { THEME_PRESETS } from '../data/themes';
@@ -460,6 +460,158 @@ Hormat kami,
                     </div>
                   );
                 })}
+              </div>
+            </div>
+
+            {/* Custom Control: Foto Ayat QS Ar-Rum 21 (Anti-Kepotong) */}
+            <div className="p-6 rounded-3xl border border-gold-400/30 bg-[#0d1613]/90 shadow-xl space-y-4">
+              <h3 className="font-serif text-lg font-bold text-gold-200 mb-1 flex items-center gap-2">
+                <ImageIcon className="w-4 h-4 text-gold-400" />
+                <span>Pengaturan Foto di Bawah Ayat Ar-Rum 21 (Anti-Kepotong)</span>
+              </h3>
+              <p className="text-xs text-gray-400">
+                Atur ukuran dan posisi fokus foto agar kepala dan tubuh mempelai tampil utuh tanpa terpotong di layar HP.
+              </p>
+
+              <div className="flex flex-col sm:flex-row gap-5 items-start">
+                <div className="w-32 h-44 rounded-2xl overflow-hidden border-2 border-gold-400/50 bg-black/60 shrink-0 relative group">
+                  <img
+                    src={formData.couple.quotePhoto || '/photos/quote_hero.webp'}
+                    alt="Preview Foto Ar-Rum 21"
+                    style={{ objectPosition: formData.couple.quotePhotoPosition || 'center top' }}
+                    className={`w-full h-full ${
+                      formData.couple.quotePhotoFit === 'landscape'
+                        ? 'object-cover'
+                        : formData.couple.quotePhotoFit === 'portrait'
+                        ? 'object-cover'
+                        : 'object-contain'
+                    }`}
+                  />
+                  <button
+                    type="button"
+                    onClick={() =>
+                      openPicker('Pilih Foto Ayat Ar-Rum 21', formData.couple.quotePhoto || '/photos/quote_hero.webp', (newUrl) => {
+                        setFormData((prev) => ({
+                          ...prev,
+                          couple: { ...prev.couple, quotePhoto: newUrl }
+                        }));
+                      })
+                    }
+                    className="absolute inset-0 bg-black/70 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col items-center justify-center text-gold-200 text-xs font-semibold gap-1"
+                  >
+                    <Upload className="w-5 h-5 text-gold-400" />
+                    <span>Ganti Foto</span>
+                  </button>
+                </div>
+
+                <div className="flex-1 space-y-4 w-full">
+                  <div>
+                    <label className="block text-[11px] font-medium text-gold-300 mb-1 uppercase tracking-wider">
+                      Mode Tampilan Foto (Agar Tidak Kepotong)
+                    </label>
+                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
+                      {[
+                        { id: 'natural', label: 'Alami / Utuh', desc: 'Tidak Kepotong (Rekomendasi)' },
+                        { id: 'portrait', label: 'Potret (3:4)', desc: 'Elegan Tinggi' },
+                        { id: 'landscape', label: 'Sedang (Landscape)', desc: 'Format Standar' },
+                      ].map((mode) => (
+                        <button
+                          key={mode.id}
+                          type="button"
+                          onClick={() =>
+                            setFormData((prev) => ({
+                              ...prev,
+                              couple: { ...prev.couple, quotePhotoFit: mode.id }
+                            }))
+                          }
+                          className={`p-2.5 rounded-xl border text-left transition-all ${
+                            (formData.couple.quotePhotoFit || 'natural') === mode.id
+                              ? 'bg-gold-500/20 border-gold-400 text-gold-200 shadow-md shadow-gold-500/10'
+                              : 'bg-black/30 border-gold-400/20 text-gray-400 hover:border-gold-400/40'
+                          }`}
+                        >
+                          <p className="font-bold text-xs">{mode.label}</p>
+                          <p className="text-[10px] opacity-75">{mode.desc}</p>
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+
+                  <div>
+                    <div className="flex items-center justify-between mb-1">
+                      <label className="text-[11px] font-medium text-gold-300 uppercase tracking-wider">
+                        Posisi Fokus Foto (Vertikal)
+                      </label>
+                      <span className="text-[10px] text-gold-300 font-mono">
+                        {formData.couple.quotePhotoPosition || 'center top'}
+                      </span>
+                    </div>
+
+                    <div className="flex gap-2 mb-2">
+                      {[
+                        { label: 'Atas (Wajah / Kepala)', val: 'center top' },
+                        { label: 'Tengah', val: 'center center' },
+                        { label: 'Bawah', val: 'center bottom' },
+                      ].map((pos) => (
+                        <button
+                          key={pos.val}
+                          type="button"
+                          onClick={() =>
+                            setFormData((prev) => ({
+                              ...prev,
+                              couple: { ...prev.couple, quotePhotoPosition: pos.val }
+                            }))
+                          }
+                          className={`flex-1 py-1 px-2 rounded-lg text-[10px] font-semibold border transition-all ${
+                            (formData.couple.quotePhotoPosition || 'center top') === pos.val
+                              ? 'bg-gold-500 text-black border-gold-400 shadow'
+                              : 'bg-black/30 text-gray-300 border-gold-400/20 hover:border-gold-400/40'
+                          }`}
+                        >
+                          {pos.label}
+                        </button>
+                      ))}
+                    </div>
+
+                    <div className="flex items-center gap-3">
+                      <span className="text-[10px] text-gray-400">Atas 0%</span>
+                      <input
+                        type="range"
+                        min="0"
+                        max="100"
+                        value={
+                          formData.couple.quotePhotoPosition?.includes('%')
+                            ? parseInt(formData.couple.quotePhotoPosition.replace(/[^0-9]/g, ''))
+                            : (formData.couple.quotePhotoPosition === 'center bottom' ? 100 : (formData.couple.quotePhotoPosition === 'center center' ? 50 : 0))
+                        }
+                        onChange={(e) =>
+                          setFormData((prev) => ({
+                            ...prev,
+                            couple: { ...prev.couple, quotePhotoPosition: `center ${e.target.value}%` }
+                          }))
+                        }
+                        className="flex-1 h-1.5 bg-black/60 rounded-lg appearance-none cursor-pointer accent-gold-400 border border-gold-400/30"
+                      />
+                      <span className="text-[10px] text-gray-400">Bawah 100%</span>
+                    </div>
+                  </div>
+
+                  <button
+                    type="button"
+                    onClick={() =>
+                      openPicker('Pilih Foto Ayat Ar-Rum 21', formData.couple.quotePhoto || '/photos/quote_hero.webp', (newUrl) => {
+                        setFormData((prev) => ({
+                          ...prev,
+                          couple: { ...prev.couple, quotePhoto: newUrl }
+                        }));
+                      })
+                    }
+                    className="w-full py-2 px-4 rounded-xl border border-gold-400/40 text-gold-300 text-xs font-semibold hover:bg-gold-500 hover:text-black transition-all flex items-center justify-center gap-2"
+                  >
+                    <Upload className="w-4 h-4" />
+                    <span>Ganti Foto Ayat Ar-Rum 21</span>
+                  </button>
+                </div>
               </div>
             </div>
           </div>

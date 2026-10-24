@@ -31,6 +31,8 @@ export const invitationData = {
     coverPhoto: "/photos/1C8A4172.webp",
     heroPhoto: "/photos/1C8A4175.webp",
     quotePhoto: "/photos/quote_hero.webp",
+    quotePhotoPosition: "center top",
+    quotePhotoFit: "natural",
     countdownPhoto: "/photos/countdown_bg.webp",
     eventPhoto: "/photos/event_bg.webp",
     eventsBg: "/photos/event_bg.webp",
