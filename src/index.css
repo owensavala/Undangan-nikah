@@ -1,0 +1,83 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 5px;
+}
+::-webkit-scrollbar-track {
+  background: #070d0a;
+}
+::-webkit-scrollbar-thumb {
+  background: #c5a059;
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #e6d3af;
+}
+
+/* Gold Gradient Text */
+.gold-text-gradient {
+  background: linear-gradient(135deg, #F9F5EC 0%, #D8BC86 40%, #C5A059 70%, #AA823E 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.gold-glow {
+  box-shadow: 0 0 25px rgba(197, 160, 89, 0.25);
+}
+
+.gold-glow-hover:hover {
+  box-shadow: 0 0 35px rgba(216, 188, 134, 0.45);
+}
+
+/* Glassmorphism Luxury Card */
+.luxury-card {
+  background: rgba(14, 23, 19, 0.8);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(197, 160, 89, 0.25);
+}
+
+/* Shimmer Light Reflection */
+@keyframes shimmerSweep {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(200%); }
+}
+
+.shimmer-button {
+  position: relative;
+  overflow: hidden;
+}
+.shimmer-button::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.35),
+    transparent
+  );
+  transform: skewX(-20deg) translateX(-150%);
+  animation: shimmerSweep 3.5s infinite;
+}
+
+/* Slow Ken Burns Effect */
+@keyframes kenBurns {
+  0% { transform: scale(1) translateY(0); }
+  50% { transform: scale(1.08) translateY(-1%); }
+  100% { transform: scale(1) translateY(0); }
+}
+
+.animate-kenburns {
+  animation: kenBurns 18s ease-in-out infinite alternate;
+}
