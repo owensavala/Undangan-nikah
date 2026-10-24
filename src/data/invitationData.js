@@ -15,7 +15,8 @@ export const invitationData = {
       parents: "Putri tercinta dari Bapak Kadir Lut & Ibu Hakima Jamil",
       instagram: "mira.kadir",
       photo: "/photos/bride_portrait.webp",
-      bgPhoto: "/photos/collage_1.webp"
+      bgPhoto: "/photos/collage_1.webp",
+      objectPosition: "center top"
     },
     groom: {
       fullName: "Wahyudi Lapa",
@@ -24,7 +25,8 @@ export const invitationData = {
       parents: "Putra tercinta dari Alm. Bapak Lapa & Ibu Marifa Latara",
       instagram: "wahyudi.lapa",
       photo: "/photos/groom_portrait.webp",
-      bgPhoto: "/photos/collage_2.webp"
+      bgPhoto: "/photos/collage_2.webp",
+      objectPosition: "center top"
     },
     coverPhoto: "/photos/cover_bg.webp",
     quotePhoto: "/photos/quote_hero.webp",
@@ -71,25 +73,33 @@ export const invitationData = {
       year: "2023",
       title: "Awal Pertemuan",
       description: "Sebuah pertemuan sederhana di tahun 2023 mengawali kisah kami. Awalnya, kami hanyalah teman biasa yang saling mengenal saat masing-masing masih memiliki pasangan. Namun, takdir memiliki jalannya sendiri. Waktu berjalan dan kejadian yang tak terduga perlahan membawa kami menjadi semakin dekat.",
-      image: "/photos/story_1.webp"
+      image: "/photos/story_1.webp",
+      objectPosition: "center top",
+      fitMode: "natural"
     },
     {
       year: "2023",
       title: "Merajut Asa Bersama",
       description: "Berawal dari obrolan-obrolan kecil, kedekatan itu semakin erat. Siapa sangka, dunia sepak bola melalui perhelatan Open Tournament Bupati Cup 2023 menjadi alasan yang menyatukan kami. Dari sanalah kami memutuskan untuk mulai merajut asa bersama, sebuah awal yang tak pernah kami bayangkan sebelumnya.",
-      image: "/photos/story_2.webp"
+      image: "/photos/story_2.webp",
+      objectPosition: "center top",
+      fitMode: "natural"
     },
     {
       year: "2024",
       title: "Belajar & Bertumbuh",
       description: "Tentu, perjalanan ini tidak luput dari ujian dan rintangan. Namun, dari segala masalah yang menghampiri, kami belajar satu hal berharga: bahwa hubungan yang sehat dan baik harus dilandasi oleh rasa sabar dari yang satu, dan keikhlasan dari yang lainnya.",
-      image: "/photos/story_3.webp"
+      image: "/photos/story_3.webp",
+      objectPosition: "center top",
+      fitMode: "natural"
     },
     {
       year: "2026",
       title: "Menuju Pernikahan",
       description: "Hingga pada akhirnya, dengan penuh keyakinan kami memutuskan untuk menyempurnakan cerita ini dan melangkah ke jenjang pernikahan pada tahun 2026.",
-      image: "/photos/story_4.webp"
+      image: "/photos/story_4.webp",
+      objectPosition: "center top",
+      fitMode: "natural"
     }
   ],
   gallery: [

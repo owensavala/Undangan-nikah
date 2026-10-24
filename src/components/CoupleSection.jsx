@@ -49,10 +49,11 @@ export default function CoupleSection({ data }) {
           className="bg-white rounded-3xl p-5 sm:p-6 shadow-2xl text-center text-gray-800"
         >
           {/* Bride Photo with soft rounded corners */}
-          <div className="w-full aspect-[3/4] rounded-2xl overflow-hidden mb-4 shadow">
+          <div className="w-full aspect-[3/4] rounded-2xl overflow-hidden mb-4 shadow bg-gray-100">
             <img
               src={bride.photo}
               alt={bride.fullName}
+              style={{ objectPosition: bride.objectPosition || 'center top' }}
               className="w-full h-full object-cover filter contrast-[1.02]"
               loading="lazy"
             />
@@ -97,10 +98,11 @@ export default function CoupleSection({ data }) {
           className="bg-white rounded-3xl p-5 sm:p-6 shadow-2xl text-center text-gray-800"
         >
           {/* Groom Photo with soft rounded corners */}
-          <div className="w-full aspect-[3/4] rounded-2xl overflow-hidden mb-4 shadow">
+          <div className="w-full aspect-[3/4] rounded-2xl overflow-hidden mb-4 shadow bg-gray-100">
             <img
               src={groom.photo}
               alt={groom.fullName}
+              style={{ objectPosition: groom.objectPosition || 'center top' }}
               className="w-full h-full object-cover filter contrast-[1.02]"
               loading="lazy"
             />

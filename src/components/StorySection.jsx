@@ -84,11 +84,22 @@ export default function StorySection({ data }) {
                 />
 
                 {/* Story Image */}
-                <div className="relative w-full aspect-[16/10] overflow-hidden bg-gray-100">
+                <div className="relative w-full overflow-hidden bg-gray-100">
                   <img
                     src={story.image}
                     alt={story.title}
-                    className="w-full h-full object-cover filter contrast-[1.02]"
+                    style={{
+                      objectPosition: story.objectPosition || 'center top'
+                    }}
+                    className={`w-full ${
+                      story.fitMode === 'contain'
+                        ? 'max-h-[380px] object-contain bg-black/5'
+                        : story.fitMode === 'landscape'
+                        ? 'aspect-[16/10] object-cover'
+                        : story.fitMode === 'portrait'
+                        ? 'aspect-[3/4] object-cover'
+                        : 'h-auto max-h-[480px] object-cover'
+                    } filter contrast-[1.02] block`}
                     loading="lazy"
                   />
                 </div>

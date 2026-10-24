@@ -584,8 +584,13 @@ Hormat kami,
 
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <div className="md:col-span-1 flex flex-col items-center text-center">
-                  <div className="relative w-36 h-48 rounded-2xl overflow-hidden border-2 border-gold-400/50 shadow-xl mb-3">
-                    <img src={formData.couple.bride.photo} alt="Preview Bride" className="w-full h-full object-cover" />
+                  <div className="relative w-36 h-48 rounded-2xl overflow-hidden border-2 border-gold-400/50 shadow-xl mb-3 bg-black">
+                    <img 
+                      src={formData.couple.bride.photo} 
+                      alt="Preview Bride" 
+                      style={{ objectPosition: formData.couple.bride.objectPosition || 'center top' }}
+                      className="w-full h-full object-cover" 
+                    />
                   </div>
                   <button
                     onClick={() =>
@@ -596,10 +601,60 @@ Hormat kami,
                         }));
                       })
                     }
-                    className="px-3.5 py-1.5 rounded-full border border-gold-400/50 bg-gold-950/40 text-gold-200 text-xs hover:bg-gold-500 hover:text-black transition-all mb-4"
+                    className="px-3.5 py-1.5 rounded-full border border-gold-400/50 bg-gold-950/40 text-gold-200 text-xs hover:bg-gold-500 hover:text-black transition-all mb-3 cursor-pointer"
                   >
                     Ganti Foto Wanita
                   </button>
+
+                  {/* Vertical focus slider for Bride */}
+                  <div className="w-full text-left mb-3 p-2.5 rounded-xl bg-black/40 border border-gold-400/20">
+                    <div className="flex items-center justify-between mb-1">
+                      <label className="text-[10px] font-semibold text-gold-300 uppercase tracking-wider">
+                        Posisi Fokus Wajah:
+                      </label>
+                      <span className="text-[9px] text-gold-400 font-mono">
+                        {formData.couple.bride.objectPosition || 'center top'}
+                      </span>
+                    </div>
+                    <div className="grid grid-cols-3 gap-1 mb-1.5">
+                      {[
+                        { label: 'Atas/Wajah', val: 'center top' },
+                        { label: 'Tengah', val: 'center center' },
+                        { label: 'Bawah', val: 'center bottom' }
+                      ].map((pos, pIdx) => (
+                        <button
+                          key={pIdx}
+                          type="button"
+                          onClick={() => setFormData((prev) => ({
+                            ...prev,
+                            couple: { ...prev.couple, bride: { ...prev.couple.bride, objectPosition: pos.val } }
+                          }))}
+                          className={`px-1 py-0.5 rounded text-[9px] font-semibold transition-all ${
+                            (formData.couple.bride.objectPosition || 'center top') === pos.val
+                              ? 'bg-gold-500 text-black'
+                              : 'bg-black/60 border border-gold-400/30 text-gray-400 hover:text-white'
+                          }`}
+                        >
+                          {pos.label}
+                        </button>
+                      ))}
+                    </div>
+                    <input
+                      type="range"
+                      min="0"
+                      max="100"
+                      value={
+                        formData.couple.bride.objectPosition?.includes('%')
+                          ? parseInt(formData.couple.bride.objectPosition.replace(/[^0-9]/g, ''))
+                          : (formData.couple.bride.objectPosition === 'center bottom' ? 100 : (formData.couple.bride.objectPosition === 'center center' ? 50 : 0))
+                      }
+                      onChange={(e) => setFormData((prev) => ({
+                        ...prev,
+                        couple: { ...prev.couple, bride: { ...prev.couple.bride, objectPosition: `center ${e.target.value}%` } }
+                      }))}
+                      className="w-full h-1 bg-black/60 rounded appearance-none cursor-pointer accent-gold-400"
+                    />
+                  </div>
 
                   <div className="w-full text-left">
                     <label className="block text-[11px] font-semibold text-gold-300 uppercase tracking-wider mb-1.5">
@@ -704,8 +759,13 @@ Hormat kami,
 
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <div className="md:col-span-1 flex flex-col items-center text-center">
-                  <div className="relative w-36 h-48 rounded-2xl overflow-hidden border-2 border-gold-400/50 shadow-xl mb-3">
-                    <img src={formData.couple.groom.photo} alt="Preview Groom" className="w-full h-full object-cover" />
+                  <div className="relative w-36 h-48 rounded-2xl overflow-hidden border-2 border-gold-400/50 shadow-xl mb-3 bg-black">
+                    <img 
+                      src={formData.couple.groom.photo} 
+                      alt="Preview Groom" 
+                      style={{ objectPosition: formData.couple.groom.objectPosition || 'center top' }}
+                      className="w-full h-full object-cover" 
+                    />
                   </div>
                   <button
                     onClick={() =>
@@ -716,10 +776,60 @@ Hormat kami,
                         }));
                       })
                     }
-                    className="px-3.5 py-1.5 rounded-full border border-gold-400/50 bg-gold-950/40 text-gold-200 text-xs hover:bg-gold-500 hover:text-black transition-all mb-4"
+                    className="px-3.5 py-1.5 rounded-full border border-gold-400/50 bg-gold-950/40 text-gold-200 text-xs hover:bg-gold-500 hover:text-black transition-all mb-3 cursor-pointer"
                   >
                     Ganti Foto Pria
                   </button>
+
+                  {/* Vertical focus slider for Groom */}
+                  <div className="w-full text-left mb-3 p-2.5 rounded-xl bg-black/40 border border-gold-400/20">
+                    <div className="flex items-center justify-between mb-1">
+                      <label className="text-[10px] font-semibold text-gold-300 uppercase tracking-wider">
+                        Posisi Fokus Wajah:
+                      </label>
+                      <span className="text-[9px] text-gold-400 font-mono">
+                        {formData.couple.groom.objectPosition || 'center top'}
+                      </span>
+                    </div>
+                    <div className="grid grid-cols-3 gap-1 mb-1.5">
+                      {[
+                        { label: 'Atas/Wajah', val: 'center top' },
+                        { label: 'Tengah', val: 'center center' },
+                        { label: 'Bawah', val: 'center bottom' }
+                      ].map((pos, pIdx) => (
+                        <button
+                          key={pIdx}
+                          type="button"
+                          onClick={() => setFormData((prev) => ({
+                            ...prev,
+                            couple: { ...prev.couple, groom: { ...prev.couple.groom, objectPosition: pos.val } }
+                          }))}
+                          className={`px-1 py-0.5 rounded text-[9px] font-semibold transition-all ${
+                            (formData.couple.groom.objectPosition || 'center top') === pos.val
+                              ? 'bg-gold-500 text-black'
+                              : 'bg-black/60 border border-gold-400/30 text-gray-400 hover:text-white'
+                          }`}
+                        >
+                          {pos.label}
+                        </button>
+                      ))}
+                    </div>
+                    <input
+                      type="range"
+                      min="0"
+                      max="100"
+                      value={
+                        formData.couple.groom.objectPosition?.includes('%')
+                          ? parseInt(formData.couple.groom.objectPosition.replace(/[^0-9]/g, ''))
+                          : (formData.couple.groom.objectPosition === 'center bottom' ? 100 : (formData.couple.groom.objectPosition === 'center center' ? 50 : 0))
+                      }
+                      onChange={(e) => setFormData((prev) => ({
+                        ...prev,
+                        couple: { ...prev.couple, groom: { ...prev.couple.groom, objectPosition: `center ${e.target.value}%` } }
+                      }))}
+                      className="w-full h-1 bg-black/60 rounded appearance-none cursor-pointer accent-gold-400"
+                    />
+                  </div>
 
                   <div className="w-full text-left">
                     <label className="block text-[11px] font-semibold text-gold-300 uppercase tracking-wider mb-1.5">
@@ -1031,7 +1141,12 @@ Hormat kami,
 
                   <div className="sm:col-span-1 flex flex-col items-center text-center pt-1">
                     <div className="w-24 h-32 rounded-xl overflow-hidden border border-gold-400/40 mb-2 bg-black">
-                      <img src={story.image} alt={story.title} className="w-full h-full object-cover" />
+                      <img 
+                        src={story.image} 
+                        alt={story.title} 
+                        style={{ objectPosition: story.objectPosition || 'center top' }}
+                        className="w-full h-full object-cover" 
+                      />
                     </div>
                     <button
                       onClick={() =>
@@ -1041,10 +1156,85 @@ Hormat kami,
                           setFormData((prev) => ({ ...prev, loveStory: updated }));
                         })
                       }
-                      className="px-2.5 py-1 rounded-lg border border-gold-400/40 text-gold-300 text-[10px] hover:bg-gold-500 hover:text-black transition-all cursor-pointer"
+                      className="px-2.5 py-1 rounded-lg border border-gold-400/40 text-gold-300 text-[10px] hover:bg-gold-500 hover:text-black transition-all cursor-pointer mb-2"
                     >
                       Ganti Foto
                     </button>
+
+                    {/* Controls to adjust position & fit */}
+                    <div className="w-full text-left space-y-2 pt-1 border-t border-gold-400/20">
+                      <div>
+                        <label className="block text-[9px] font-semibold text-gold-300 uppercase tracking-wider mb-1">
+                          Tampilan:
+                        </label>
+                        <select
+                          value={story.fitMode || 'natural'}
+                          onChange={(e) => {
+                            const updated = [...formData.loveStory];
+                            updated[idx].fitMode = e.target.value;
+                            setFormData((prev) => ({ ...prev, loveStory: updated }));
+                          }}
+                          className="w-full px-2 py-1 rounded-lg bg-black/60 border border-gold-400/30 text-gold-200 text-[10px] focus:outline-none"
+                        >
+                          <option value="natural">🌟 Utuh Alami</option>
+                          <option value="portrait">🖼️ Crop Portrait</option>
+                          <option value="landscape">🌄 Crop Landscape</option>
+                          <option value="contain">🔍 Contain</option>
+                        </select>
+                      </div>
+
+                      <div>
+                        <div className="flex items-center justify-between mb-0.5">
+                          <label className="text-[9px] font-semibold text-gold-300 uppercase tracking-wider">
+                            Fokus:
+                          </label>
+                          <span className="text-[8px] text-gold-400 font-mono">
+                            {story.objectPosition || 'center top'}
+                          </span>
+                        </div>
+                        <div className="grid grid-cols-3 gap-0.5 mb-1">
+                          {[
+                            { label: 'Atas', val: 'center top' },
+                            { label: 'Tengah', val: 'center center' },
+                            { label: 'Bawah', val: 'center bottom' }
+                          ].map((p, pIdx) => (
+                            <button
+                              key={pIdx}
+                              type="button"
+                              onClick={() => {
+                                const updated = [...formData.loveStory];
+                                updated[idx].objectPosition = p.val;
+                                setFormData((prev) => ({ ...prev, loveStory: updated }));
+                              }}
+                              className={`px-1 py-0.5 rounded text-[8px] font-semibold transition-all ${
+                                (story.objectPosition || 'center top') === p.val
+                                  ? 'bg-gold-500 text-black'
+                                  : 'bg-black/60 border border-gold-400/30 text-gray-400 hover:text-white'
+                              }`}
+                            >
+                              {p.label}
+                            </button>
+                          ))}
+                        </div>
+                        <input
+                          type="range"
+                          min="0"
+                          max="100"
+                          value={
+                            story.objectPosition?.includes('%')
+                              ? parseInt(story.objectPosition.replace(/[^0-9]/g, ''))
+                              : (story.objectPosition === 'center bottom' ? 100 : (story.objectPosition === 'center center' ? 50 : 0))
+                          }
+                          onChange={(e) => {
+                            const updated = [...formData.loveStory];
+                            updated[idx].objectPosition = `center ${e.target.value}%`;
+                            setFormData((prev) => ({ ...prev, loveStory: updated }));
+                          }}
+                          className="w-full h-1 bg-black/60 rounded appearance-none cursor-pointer accent-gold-400"
+                          title="Geser posisi vertikal foto"
+                        />
+                      </div>
+                    </div>
                   </div>
 
                   <div className="sm:col-span-3 space-y-3 pr-6 sm:pr-8">
